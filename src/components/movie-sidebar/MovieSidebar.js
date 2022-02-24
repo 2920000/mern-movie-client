@@ -18,7 +18,6 @@ function MovieSidebar(props) {
                 default:
                    response= await tmdbApi.getTvList(tvType.popular,{params})
               setMovies(response.results.slice(0,10))
-              console.log(response.results)
 
               }
           }

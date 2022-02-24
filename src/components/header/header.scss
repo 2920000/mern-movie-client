@@ -1,7 +1,7 @@
 @use '../../scss/' as *;
 .header.fixed{
     position: fixed;
-    background-color: $black;
+    background-color: $background-web;
     &::before{
         content: '';
         position: absolute;
@@ -34,9 +34,12 @@
     .header-flex{ 
     @include flex(center,space-between);
     margin: 0 30px;
-//     @include desktop{
-//    margin: 0 20px;
-//     }
+     &-tablet{
+      @include flex(center,center);
+      &>*{
+          margin-right: 10px;
+      }
+     }
     }
     
      &-branch{
@@ -54,11 +57,16 @@
         @include flex(center,null);
         font-family: $font-primary;
         font-size: 0.935rem;
+       
         &>*{
             font-weight: 600;
             margin-right: 2.5rem;
             cursor: pointer;
             color: $white;
+            @include desktop{
+                margin-right:1.5rem;
+            }
+               
         }
         :last-child{
             margin-right: 0;
@@ -66,16 +74,24 @@
 
          .active{
           color: $red;
-          
+              
     }
+      
         @include tablet{
             &>*{
                 margin-right: 1rem;
             }
         }
-        @include mobile{
+       @include tablet{
+        &>*{
             display: none;
         }
+        .search{
+            display: block;
+        }
+        
+       }
+       
         .genre{
             position: relative;
                 &-list{
@@ -109,11 +125,11 @@
      }
      &-bar{
          display: none;
-         @include mobile{
+         @include tablet{
              display: block;
-             font-size: 1.5rem;
+             font-size: 2rem;
              color:$red;
-             line-height: 1;
+             line-height: 0.6;
              cursor: pointer;
          }
      }

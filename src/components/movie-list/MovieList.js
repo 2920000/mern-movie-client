@@ -1,15 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import './movie-list.scss'
 import tmdbApi,{movieType,category} from '../../api/apiThemovie'
 import Slider from 'react-slick'
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 import Poster from '../poster-movie/Poster'
-import Skeleton from '../skeleton/Skeleton';
 function MovieList(props) {
     const [movieList,setMovieList]=useState([])
     const [load,setLoad]=useState(false)
-    const {position}=props
+    const ref=useRef()
     useEffect(()=>{
         const params={
            page:1
@@ -30,9 +29,15 @@ function MovieList(props) {
                  response= await tmdbApi.getMovieSimilar(props.category,props.id)
             }
             setMovieList(response.results.slice(0,10))
+              setLoad(true)
          } 
-         fetchData()
+         //
+            fetchData()
+       
+             
+           
          return ()=>setMovieList([])
+       
     },[])
     const settings = {
         infinite: false,
@@ -63,18 +68,37 @@ function MovieList(props) {
         }
         ]
       };
+      
   return (
             //  <Slider {...settings}>
-                <div className='movie-list'>
-                    {movieList.map(e=>
-                <div className='poster' key={e.id}>
-                 <Poster e={e} />
-                    </div>
-                     )}
-                 </div>
+             <div >
+               {load
+               ?<>
+               <div  className={`movie-list `} id={props.id}  >
+                {movieList.map(e=>
+            <div    className='poster' key={e.id}>
+             <Poster load={load} e={e} />
+                </div>
+                 )}
+             </div>
+               </>
+               :<div className='movie-loading'>
+                        <p></p>
+                      <div className='skeleton-image'> 
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                      </div>
+
+                      
+               </div>}
+             </div>
                 //  </Slider>
               
   )
 }
 
 export default MovieList
+

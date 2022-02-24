@@ -10,6 +10,7 @@ import "./home.scss";
 function Home() {
   const navigate = useNavigate();
   const [catalog, setCatalog] = useState("movie");
+  const [allowLoad, setAllowLoad] = useState();
   const btnUpRef = useRef();
   const handleSwitch = (value) => {
     setCatalog(value);
@@ -28,20 +29,40 @@ function Home() {
       }
     });
   });
-  //      const positionYRef=useRef()
-  //      const [position,setPosition]=useState()
-  //     useEffect(()=>{
-  //      window.scrollTo(0,0)
-  //      const positionOfElement=positionYRef.current.offsetTop -700
-  //      console.log(positionOfElement)
-  //      window.addEventListener('scroll',e=>{
-  //           console.log(window.scrollY,positionYRef.current.offsetTop)
-  //           if(window.scrollY>positionOfElement){
 
-  //       console.log('fetch')
-  //           }
+  // observer
+
+  // const ready=()=>{
+  //   // const homeLeftList= document.getElementsByClassName('home-left-list')
+  //   const isload= document.getElementsByClassName('isload')
+  //   // console.log(homeLeftList)
+  //   const observer= new IntersectionObserver((entries)=>{
+  //      entries.forEach(entry=>{
+  //       //  console.log(entry)
+  //         if(entry.isIntersecting){
+  //           entry.target.setAttribute('class','movie-list loaded')
+  //         }
+
   //      })
-  //     },[])
+  //     })
+  //       for(let i=0;i<isload.length;i++){
+  //         observer.observe(isload[i])
+  //       }
+
+  // }
+
+  // document.addEventListener('DOMContentLoaded',ready)
+  //
+//  const ready=()=>{
+//   const list=document.getElementsByClassName('home-left-list')
+//   const observer= new IntersectionObserver(entries=>{
+// console.log(entries)
+//   })
+//   for(let i=0;i<list.length;i++){
+//    observer.observe(list[i])
+//   }
+//  }
+//   window.addEventListener('DOMContentLoaded',ready)
   return (
     <main>
       <section>
@@ -50,52 +71,11 @@ function Home() {
       <section className="container-movie">
         <div className="home-flex">
           <div className="home-left">
-            <section className="home-left-list">
-              <div className="catalog">
-                <h3>Popular movies</h3>
-                <Button
-                  onClick={() => {
-                    navigate(`${movieType.popular}/page/1`);
-                  }}
-                  className="small"
-                >
-                  View all
-                </Button>
-              </div>
-              <MovieList type={movieType.popular} />
-            </section>
-            <section className="home-left-list">
-              <div className="catalog">
-                <h3>Upcoming movies</h3>
-                <Button
-                  onClick={() => {
-                    navigate(`${movieType.upcoming}/page/1`);
-                  }}
-                  className="small"
-                >
-                  View all
-                </Button>
-              </div>
-              <MovieList type={movieType.upcoming} />
-            </section>
-            <section className="home-left-list">
-              <div className="catalog">
-                <h3>Top rated movies</h3>
-                <Button
-                  onClick={() => {
-                    navigate(`${movieType.top_rated}/page/1`);
-                  }}
-                  className="small"
-                >
-                  View all
-                </Button>
-              </div>
-              <MovieList type={movieType.top_rated} />
-            </section>
+          <HomeMain/>
           </div>
 
           <div className="home-right">
-            <h2 className="home-right-title">Trending</h2>
+            <h2 className="home-right-title">BẢNG XẾP HẠNG</h2>
             <div className="home-right-movie__sidebar">
               <div className="trending-catalog">
                 <h4
@@ -109,7 +89,7 @@ function Home() {
                     handleSwitch("movie");
                   }}
                 >
-                  Movies
+                  PHIM LẺ
                 </h4>
                 <h4
                   className="trending-catalog__tv"
@@ -122,7 +102,7 @@ function Home() {
                     handleSwitch("tv");
                   }}
                 >
-                  Tv
+                  PHIM BỘ
                 </h4>
               </div>
               <div className="trending">
@@ -140,3 +120,55 @@ function Home() {
 }
 
 export default Home;
+
+
+
+export const HomeMain = () => {
+  const navigate=useNavigate()
+  
+  // const ready=()=>{
+  //   const list=document.getElementsByClassName('home-left-list')
+  //   const observer= new IntersectionObserver(entries=>{
+  // entries.forEach(entry=>{
+  //   console.log(entry)
+  // })
+  //   })
+  //   for(let i=0;i<list.length;i++){
+  //    observer.observe(list[i])
+  //   }
+  //  }
+  //   window.addEventListener('DOMContentLoaded',ready)
+   
+
+  const mainCatalogList = [
+    {
+      catalog: "PHIM PHỔ BIẾN",
+      type:movieType.popular
+    },
+    {
+      catalog: "PHIM SẮP CHIẾU",
+      type:movieType.upcoming
+    },
+    {
+      catalog: "TOP PHIM ĐÁNH GIÁ CAO",
+      type:movieType.top_rated
+    },
+  ];
+
+  return <>
+    {mainCatalogList.map((e,i)=> <section key={i} className="home-left-list">
+  <div className="catalog">
+    <h3>{e.catalog}</h3>
+    <Button
+      onClick={() => {
+        navigate(`${e.type}/page/1`);
+      }}
+      className="small"
+    >
+      Xem tất cả
+    </Button>
+  </div>
+  <MovieList type={e.type} />
+</section>)}
+  </>
+};

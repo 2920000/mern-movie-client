@@ -3,9 +3,10 @@
 .poster-link{
   position: relative;
 }
+
 .poster-image {
   transform: scale(1);
-  transition: transform 150ms linear;
+  transition: transform 150ms linear,opacity 1s linear;
   width: 100%;
   height: 100%;
   position: absolute;
@@ -14,6 +15,7 @@
   background-size: cover;
   background-position: top;
 }
+
 .image-container:hover .poster-image {
   transform: scale(1.2);
 }
@@ -21,7 +23,7 @@
   overflow: hidden;
   position: relative;
   padding-top: 150%;
- 
+  
 }
 .grid{
  padding-top: 150%;

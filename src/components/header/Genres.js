@@ -1,23 +1,23 @@
  const genres= [
     {
-        genre:'Action',
+        genre:'Hành Động',
         id:28
     },
     {
-        genre:'Adventure',
+        genre:'Phưu Lưu',
         id:12
     },
     {
-        genre:'Animation',
+        genre:'Hoạt Hình',
         id:16
     },{
-        genre:'Comedy',
+        genre:'Hài Hước',
         id:35
     },{
-        genre:'Crime',
+        genre:'Tội Phạm',
         id:80
     },{
-        genre:'Drama',
+        genre:'Kịch Tính',
         id:18
     },{
         genre:'Fantasy',
