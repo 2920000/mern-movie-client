@@ -1,0 +1,34 @@
+@use '../../scss/' as *;
+.btn{
+font-size: 0.875rem;
+color: $white;
+background-color: $red;
+border-radius: $border_radius-btn;
+cursor: pointer;
+}
+ .btn.large{
+    padding:10px 30px ;
+}
+.btn.small{
+  padding: 5px 10px;
+}
+.white{
+    color: $white;
+}
+.red{
+    color:$red ;
+}
+.hover{
+    transition: transform 150ms linear;
+   &:hover{
+       transform: scale(1.1);
+       box-shadow:  0 0 5px $white;
+   }
+}
+.btn-detail-movie{
+    width: 100%;
+    padding: 0.8rem 0;
+    margin-top: 2rem;
+    font-size: 1.5rem;
+    font-weight: 300;
+}

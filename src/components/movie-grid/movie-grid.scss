@@ -1,0 +1,51 @@
+@use '../../scss/' as *;
+.movie-grid{
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    &-image{
+        max-width: 100%;
+    }
+    @include desktop{
+        grid-template-columns:repeat(4,1fr);
+    }
+    @include tablet{
+        grid-template-columns:repeat(3,1fr);
+
+    }
+    @include mobile{
+        grid-template-columns:repeat(2,1fr);
+
+    }
+}
+.banner{
+    width: 100%;
+    object-fit: cover;
+    position: relative;
+    z-index: -1;
+    margin-bottom: 50px;
+     &>img{
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;  
+    animation: move 30s linear infinite alternate;
+  
+     }
+     @keyframes move {
+         0%{
+             object-position: bottom;
+         }
+         100%{
+             object-position: top;
+         }
+     }
+    &::before{
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        background-color:$overlay-backdrop ;
+        mix-blend-mode: multiply;
+    }
+}

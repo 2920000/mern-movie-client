@@ -1,0 +1,50 @@
+@use './scss/' as *;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+html{
+    font-size: 100%;
+    background-color:$background-web;
+    // @include desktop{
+    //     font-size: 90%;
+    // }
+    // @include tablet{
+    //     font-size: 80%;
+    // }
+    // @include mobile{
+    //     // font-size:75%;
+    // }
+}
+body{
+    font-family: $font-primary;
+    font-weight: 400;
+    overflow-x: hidden;
+}
+
+a{
+    text-decoration: none;
+    color:unset;
+}
+ul{
+    list-style-type: none;
+}
+button,input{
+    outline: none;
+    border: none;
+}
+.container{
+    max-width: 1450px;
+    margin: 0 auto;
+}
+.container-movie{
+    max-width: 1350px;
+    margin: 0 auto;
+}
+
+img{
+    max-width: 100%;
+}

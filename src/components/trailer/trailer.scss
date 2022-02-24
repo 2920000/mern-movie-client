@@ -1,0 +1,33 @@
+@use '../../scss/' as *;
+
+.trailer-list{
+    // display: flex;
+    margin-top: 100px;
+    @include tablet{
+        width: 100%;
+        flex-direction: column;
+    }
+    .trailer-item{
+      padding-top: 60%;
+      position: relative; 
+      margin-bottom: 50px;
+      @include tablet{
+        padding-top: 60%;
+        margin-bottom: 50px;
+    }
+    .one{
+        padding-top: 100%;
+    }
+    }
+   
+    .trailer-iframe{
+        position: absolute;
+        width: 100%;
+        
+        top: 0;
+        height: 100%;
+        @include tablet{
+            width: 100%;
+        }
+    }
+}

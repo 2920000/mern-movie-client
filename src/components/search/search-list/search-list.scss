@@ -1,0 +1,20 @@
+@use "../../../scss/" as *;
+.search-list {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  margin: 40px 0;
+  color: $white;
+  @include desktop {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  @include tablet {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  @include mobile {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .search-item {
+    color: $white;
+  }
+}

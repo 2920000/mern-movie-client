@@ -1,0 +1,33 @@
+@use '../../scss/' as *;
+.movie-list{
+display: grid;
+grid-template-columns: repeat(5,1fr);
+@include large-desktop{
+    grid-template-columns: repeat(3,1fr);
+}
+@include tablet{
+    grid-template-columns: repeat(2,1fr);
+
+
+}
+
+}
+
+// .slick-next::before{
+//     font-size: 3rem;
+// }
+// .slick-prev:before{
+//    font-size: 3rem;
+ 
+// }
+.poster{
+    padding: 10px;
+}
+.all-movies{
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    padding-top: 70px;
+    max-width: 1200px;
+    margin: auto;
+}
+

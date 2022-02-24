@@ -1,0 +1,36 @@
+@use '../../scss/' as *;
+
+.search-page{
+    background-color: #06121e;
+    width: 100%;
+     min-height: 100vh;
+    .main-search{
+     padding-top: 100px;
+     margin: 0 10px;
+     &-input{
+         width: 100%;
+         padding: 15px 20px;
+         border-radius: 5px;
+         font-size: 1.5rem;
+         transition: padding 150ms linear;
+         transition:  font-size 150ms linear;
+
+         @include tablet{
+             font-size: 1.2rem;
+             padding: 13px 20px;
+         }
+         &::placeholder {
+            color: $light-grey;
+            opacity: 1; /* Firefox */
+          }
+          
+          &:-ms-input-placeholder { /* Internet Explorer 10-11 */
+            color: $light-grey;
+          }
+          
+          &::-ms-input-placeholder { /* Microsoft Edge */
+            color: $light-grey;
+          }
+     }
+    }
+}
