@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import tmdbApi from "../../../api/apiThemovie";
 import apiConfig from "../../../api/apiConfig";
 import { useParams } from "react-router-dom";
-import "./movie-detail.scss";
 import Spinner from "../../spinner/Spinner";
 import Button from "../../button/Button";
 import { useNavigate } from "react-router-dom";
@@ -10,6 +9,7 @@ import Trailer from "../../trailer/Trailer";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
+import "./movie-detail.scss";
 function MovieDetail() {
   const { category, movieId } = useParams();
   const [load, setLoad] = useState(false);
