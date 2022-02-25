@@ -18,7 +18,7 @@ function Button(props) {
   }
   
   return (
-    <button onClick={props.onClick} className={`btn ${props.className} ${props.color?'red':'white'}`  }>
+    <button onClick={props.onClick} className={`btn ${props.className}   ${props.color?'red':'white'}`  }>
         {props.children}
     </button>
   )

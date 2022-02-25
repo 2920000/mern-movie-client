@@ -126,18 +126,18 @@ export default Home;
 export const HomeMain = () => {
   const navigate=useNavigate()
   
-  // const ready=()=>{
-  //   const list=document.getElementsByClassName('home-left-list')
-  //   const observer= new IntersectionObserver(entries=>{
-  // entries.forEach(entry=>{
-  //   console.log(entry)
-  // })
-  //   })
-  //   for(let i=0;i<list.length;i++){
-  //    observer.observe(list[i])
-  //   }
-  //  }
-  //   window.addEventListener('DOMContentLoaded',ready)
+  const ready=()=>{
+    const list=document.getElementsByClassName('home-left-list')
+    const observer= new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    console.log(entry)
+  })
+    })
+    for(let i=0;i<list.length;i++){
+     observer.observe(list[i])
+    }
+   }
+    window.addEventListener('DOMContentLoaded',ready)
    
 
   const mainCatalogList = [

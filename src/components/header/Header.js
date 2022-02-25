@@ -1,86 +1,68 @@
 import React, { useEffect, useRef, useState } from "react";
 import { FaBars } from "react-icons/fa";
-import Button from "../button/Button";
-import genres from "./Genres";
-import { Link, Outlet, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
+import NavSide from "../tablet-nav-sidebar/NavSide";
+import HeaderNav from "./HeaderNav";
 import "./header.scss";
+
 function Header() {
-  const { pathname } = useLocation();
   const headerRef = useRef();
-  const nav = [
-    {
-      navName: "Trang Chủ",
-      link: "/",
-    },
-    {
-      navName: "Phim Lẻ",
-      link: "/movie/page/1",
-    },
-    {
-      navName: "Phim Bộ",
-      link: "/tv/page/1",
-    },
-    {
-      navName: "Thể loại",
-    },
-    {
-      navName: "Tìm Kiếm",
-      link: "/search",
-      className:'search'
-    },
-  ];
-  const indexOfNavActive = nav.findIndex((e) => e.link === pathname);
+  const headerMixMode=useRef()
+  const [translateSidebarHeader,setTranslateSidebarHeader]=useState('-250px')
+  const [backgroundColorHeader,setBackgroundColorHeader]=useState()
+  const [opacityOverlay,setOpacityOverlay]=useState(0)
+  const [overlay, setOverlay] = useState(false);
   useEffect(() => {
     const show = () => {
+     if(headerMixMode.current&&headerRef.current){
       if (
         document.documentElement.scrollTop > 70 ||
         document.body.scrollTop > 70
       ) {
         headerRef.current.classList.add("fixed");
+        setBackgroundColorHeader('#213346')
+
       } else {
         headerRef.current.classList.remove("fixed");
+        setBackgroundColorHeader('')
       }
+     }
     };
-    window.addEventListener("scroll", show);
-
+    const srollEvent = window.addEventListener("scroll", show);
     return () => {
-      window.removeEventListener("scroll", show);
+      window.removeEventListener("scroll", srollEvent);
     };
   });
-
+  const handleShowSide = () => {
+    setTranslateSidebarHeader('0')
+    setOverlay(true);
+    setTimeout(() => {
+      setOpacityOverlay('1')
+    }, 70);
+    document.body.style.overflowY = "hidden";
+    document.body.style.marginRight = "17px";
+  };
   return (
     <header>
+   <NavSide translateSidebarHeader={translateSidebarHeader} setTranslateSidebarHeader={setTranslateSidebarHeader} overlay={overlay} opacityOverlay={opacityOverlay} setOpacityOverlay={setOpacityOverlay} setOverlay={setOverlay} />
+  <div ref={headerMixMode} style={{backgroundColor:backgroundColorHeader}}  className="header-mix-mode"></div>
       <div ref={headerRef} className="header">
         <div className="container">
           <div className="header-flex ">
-             <div className="header-flex-tablet">
-                <div className="header-bar">
-                  <FaBars />
-                </div>
-                <Link to="/">
-                  <h1 className="header-branch">
-                    <span>Lxt</span>
-                    <span>video</span>
-                  </h1>
-                </Link>
-             </div>
+            <div className="header-flex-tablet">
+              <div onClick={handleShowSide} className="header-bar">
+                <FaBars />
+              </div>
+              <Link to="/">
+                <h1 className="header-branch">
+                  <span>Lxt</span>
+                  <span>video</span>
+                </h1>
+              </Link>
+            </div>
             <nav className="header-nav ">
-              <ul className="header-nav-list oke">
-                {nav.map((e, i) => (
-                  <NavItem
-                    key={i}
-                    index={i}
-                    indexOfNavActive={indexOfNavActive}
-                    e={e}
-                    
-                  />
-                ))}
-                <li>
-                  <Button className="large">Đăng nhập</Button>
-                </li>
-              </ul>
+              <HeaderNav className="header-nav-list" />
             </nav>
-           
           </div>
         </div>
       </div>
@@ -89,59 +71,3 @@ function Header() {
 }
 
 export default Header;
-
-const NavItem = (props) => {
-  const [showGenres,setShowGenres]=useState(false)
-  const [opacity,setOpacity]=useState(0)
-  const [translate,setTranslate]=useState(0)
-  const hoverRef=useRef()
-  const outRef=useRef()
-  const handleOffGenreBox=()=>{
-      setShowGenres(false)
-  }
-  console.log(props)
-  const handleHover = () => {
-     setShowGenres(true)
-     hoverRef.current= setTimeout(()=>{
-        setOpacity(1)
-        setTranslate('10px')
-    },150)
-    
-    clearTimeout(outRef.current)
-  };
-  const handleOut=()=>{
-    outRef.current=setTimeout(()=>{
-        setShowGenres(false)
-      },150)
-      setOpacity(0)
-      setTranslate('-30px')
-      clearTimeout(hoverRef.current)
-  }
-  if(props.e.navName==='Thể loại'){
-      return  <span className="genre"
-      onMouseEnter={() => {
-        handleHover();
-      }}
-      onMouseLeave={()=>{
-          handleOut()
-      }}
-    >
-      {props.e.navName}
-     { showGenres&&<ul style={{opacity:`${opacity}`,transform:`translateY(${translate})`}} className="genre-list">
-        {genres.map(genre=><Link key={genre.id} onClick={handleOffGenreBox} to={`/movie/genre/${genre.id}`}><li className="genre-item" >{genre.genre}</li></Link>)}
-      </ul>}
-    </span>
-  }
-  else if(props.e.className==='search'){
-    return <li className={`${props.index === props.indexOfNavActive ? "active" : ""} search  `  }>
-    <Link to={`${props.e.link}`}>{props.e.navName}</Link>
-</li>
-
-  }
-  else {
-      return <li className={`${props.index === props.indexOfNavActive ? "active" : ""}  `}>
-        <Link to={`${props.e.link}`}>{props.e.navName}</Link>
-    </li>
-  }
-  
-};

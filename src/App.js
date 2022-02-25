@@ -9,10 +9,13 @@ import WatchMovie from "./components/pages/watchMovie/WatchMovie";
 import Search from "./components/search/Search";
 import SearchList from "./components/search/search-list/SearchList";
 import Genres from "./components/pages/genres/Genres";
+import NavSide from "./components/tablet-nav-sidebar/NavSide";
 function App() {
   return (
-    <>
+    <> 
+     
       <Router>
+      {/* <NavSide/> */}
         <Header />
             <Routes>
               <Route path="/" element={<Home/>} />

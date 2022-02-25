@@ -32,6 +32,7 @@ function Hero() {
         autoplay: true,
         speed: 600,
         autoplaySpeed: 4000,
+        arrows:false,
         cssEase: "linear"
       };
   return (

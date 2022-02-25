@@ -33,7 +33,7 @@ function MovieList(props) {
          } 
          //
             fetchData()
-       
+         
              
            
          return ()=>setMovieList([])

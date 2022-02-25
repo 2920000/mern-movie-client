@@ -1,7 +1,17 @@
 @use '../../scss/' as *;
+.header-mix-mode{
+    position: fixed;
+    width: 100%;
+    padding: 2.25rem 0;
+    mix-blend-mode: multiply;
+    z-index: 99;
+    opacity: 1;
+    transition: background-color 150ms linear;
+
+}
 .header.fixed{
     position: fixed;
-    background-color: $background-web;
+    z-index: 100;
     &::before{
         content: '';
         position: absolute;
@@ -17,10 +27,7 @@
 .header{
     width: 100%;
     position: absolute;
-    background-color:transparent;
     z-index: 99;
-    transition: background-color 300ms linear;
-    
     &::before{
         content: '';
         position: absolute;
@@ -133,5 +140,32 @@
              cursor: pointer;
          }
      }
+    }
 
-     }
+    //
+    .header-sidebar{
+        position: absolute;
+        top: 0;
+        height: 100vh;
+        width: 100%;
+        // background-color: blue;
+        &-mobile{
+           position: absolute;
+           min-width: 240px;
+           height: 100%;
+           color: $white;
+           background-color: $background-web;
+           z-index: 9999;
+        }
+        .overlay {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background-color: $overlay;
+            z-index: 9998;
+            mix-blend-mode: multiply;
+        }
+    }
+    .header-tablet{
+        // position: fixed;
+    }
