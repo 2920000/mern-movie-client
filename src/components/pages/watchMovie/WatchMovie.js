@@ -1,21 +1,39 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import './watch-movie.scss'
 import {useParams} from 'react-router-dom'
 import tmdbApi from '../../../api/apiThemovie'
-import axios from 'axios'
 function WatchMovie() {
-    const {movieId}=useParams()
+    const {category,movieId}=useParams()
+    const [detail,setDetail]=useState()
     useEffect(()=>{
-        //  axios.get(`https://api.themoviedb.org/3/tv/${movieId}/season/1/episode/1?api_key=cc0885e73e8fa7eef070814cd0659931&language=en-US`)
-         axios.get(`https://api.themoviedb.org/3/tv/${movieId}/season/1?api_key=cc0885e73e8fa7eef070814cd0659931&language=en-US`)
-         .then(
-            res=>console.log(res.data)
-          )
+      const params={
+
+      }
+       const fetchData=async()=>{
+         const response=await tmdbApi.getMovieDetail(category,movieId,{params})
+         setDetail(response)
+       }
+       fetchData()
+
+       
     },[])
+    console.log(detail)
   return (
-    <div className='video'>
-        {/* <iframe width='100%' height='650px' src={`https://www.2embed.ru/embed/tmdb/movie?id=${movieId}`}  /> */}
-        <iframe width='100%' height='650px' src={`https://www.2embed.ru/embed/tmdb/tv?id=${movieId}&s=1&e=2`}  />
+    <div className='watch'>
+      <div className='container-movie'>
+        <div className='watch-flex'>
+             <div className='watch-left'>
+             <iframe width='700px' height='400px'    />
+    
+    {/* {category==='movie'
+    ?<iframe width='700px' height='400px'  src={`https://www.2embed.ru/embed/tmdb/movie?id=${movieId}`}  />
+    :<iframe width='700px' height='400px'  src={`https://www.2embed.ru/embed/tmdb/tv?id=${movieId} ID&s=1 NUMBER&e=1 NUMBER`} />} */}
+             </div>
+             <div className='watch-right'></div>
+
+        </div>
+     
+      </div>
 
     </div>
   )

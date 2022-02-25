@@ -57,16 +57,28 @@ grid-template-columns: repeat(5,1fr);
 
 .movie-loading{
     width: 100%;
-    height: 400px;
+    // height: 400px;
     padding-top: 0px;
     .skeleton-image{
         display: grid;
         grid-template-columns: repeat(5,1fr);
+
+     @include large-desktop{
+        grid-template-columns: repeat(3,1fr);
+     }
+     @include tablet{
+        grid-template-columns: repeat(2,1fr);
+
+     }
         &>*{
             background-color: #132538;
-            height: 300px;
-            margin-right: 10px;
-             animation: loadMovie 400ms linear infinite;
+            padding-top: 150%;
+            margin-right: 20px;
+            margin-bottom: 20px;
+             animation: loadMovie 900ms linear infinite;
+             @include desktop{
+                 padding-top: 125%;
+             }
         }
     }
 }

@@ -10,7 +10,7 @@ cursor: pointer;
     padding:10px 30px ;
 }
 .btn.small{
-  padding: 5px 10px;
+  padding: 6px 15px;
 }
 .white{
     color: $white;
@@ -19,10 +19,16 @@ cursor: pointer;
     color:$red ;
 }
 .hover{
-    transition: transform 150ms linear;
+    transition: transform 150ms linear,background-color 150ms linear;
+    font-family: $font-secondary;
+    font-weight: 700;
    &:hover{
-       transform: scale(1.1);
-       box-shadow:  0 0 5px $white;
+    //    transform: scale(1.1);
+    //    box-shadow:  0 0 5px $white;
+    background-color: $white;
+    color: $red;
+    transform: scale(1.1);
+    font-weight: 800;
    }
 }
 .btn-detail-movie{

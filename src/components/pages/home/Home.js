@@ -125,19 +125,23 @@ export default Home;
 
 export const HomeMain = () => {
   const navigate=useNavigate()
+  // const [allowLoad,setAllowLoad]=useState(null)
+  // const ready=()=>{
+  //   const list=document.getElementsByClassName('home-left-list')
+  //   const observer= new IntersectionObserver(entries=>{
+  //   entries.forEach(entry=>{
+  //     console.log(entry)
+  //         if(entry.isIntersecting){
+  //           setAllowLoad(entry.target.id)
+  //         }
+  //   })
   
-  const ready=()=>{
-    const list=document.getElementsByClassName('home-left-list')
-    const observer= new IntersectionObserver(entries=>{
-  entries.forEach(entry=>{
-    console.log(entry)
-  })
-    })
-    for(let i=0;i<list.length;i++){
-     observer.observe(list[i])
-    }
-   }
-    window.addEventListener('DOMContentLoaded',ready)
+  //   })
+  //   for(let i=0;i<list.length;i++){
+  //    observer.observe(list[i])
+  //   }
+  //  }
+  //   window.addEventListener('DOMContentLoaded',ready)
    
 
   const mainCatalogList = [
@@ -156,19 +160,19 @@ export const HomeMain = () => {
   ];
 
   return <>
-    {mainCatalogList.map((e,i)=> <section key={i} className="home-left-list">
+    {mainCatalogList.map((e,i)=> <section key={i} id={e.type} className="home-left-list">
   <div className="catalog">
     <h3>{e.catalog}</h3>
     <Button
       onClick={() => {
         navigate(`${e.type}/page/1`);
       }}
-      className="small"
+      className="small hover"
     >
       Xem tất cả
     </Button>
   </div>
-  <MovieList type={e.type} />
+  <MovieList  type={e.type} />
 </section>)}
   </>
 };

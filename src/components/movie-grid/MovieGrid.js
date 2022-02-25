@@ -6,6 +6,7 @@ function MovieGrid(props) {
     useEffect(()=>{
          
     },[])
+    console.log(movies)
   return (
     <div className=''>
      <div className='banner'>

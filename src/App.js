@@ -21,7 +21,7 @@ function App() {
               <Route path="/" element={<Home/>} />
               <Route path="/:category/:movieId" element={<MovieDetail/>} />
               <Route  path="/:category/page/:pageNumber" element={<Catalog/>} />
-              <Route path="/watch/:movieId" element={<WatchMovie/>} />
+              <Route path="/watch/:category/:movieId" element={<WatchMovie/>} />
               <Route path="/search/" element={<Search/>} >
                     <Route path=":keyword" element={<SearchList/>} />
               </Route>

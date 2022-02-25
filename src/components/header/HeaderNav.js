@@ -1,9 +1,10 @@
 import React, { useState, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { MdOutlineSearch } from "react-icons/md";
 import Button from "../button/Button";
 import genres from "./Genres";
 import { nav } from "./navName";
-import './header.scss'  
+import "./header.scss";
 function HeaderNav(props) {
   const { pathname } = useLocation();
 
@@ -102,7 +103,10 @@ export const NavItem = (props) => {
             props.index === props.indexOfNavActive ? "active" : ""
           } search  `}
         >
-          <Link to={`${props.e.link}`}>{props.e.navName}</Link>
+          <Link to={`${props.e.link}`}>
+            <MdOutlineSearch className="search-icon" />
+            <span className="search-text">{props.e.navName}</span>
+          </Link>
         </li>
       );
     } else {
@@ -121,5 +125,5 @@ export const NavItem = (props) => {
 
 // const NavItemLi=(props)=>{
 //     return  <li className={} ></li>
-   
+
 // }

@@ -44,6 +44,9 @@ function MovieDetail() {
   }, []);
   console.log(movieDetail);
   const caculateTime = () => {};
+  const handleShowChoices=()=>{
+console.log('oke')
+  }
   return (
     <>
       {load ? (
@@ -64,14 +67,27 @@ function MovieDetail() {
                     src={apiConfig.originalImage(movieDetail.poster_path)}
                     alt=""
                   />
-                  <Button
+                 {category==='movie'?
+                 <Button
                     onClick={() => {
-                      navigate(`/watch/${movieDetail.id}}`);
+                      navigate(`/watch/${category}/${movieDetail.id}}`);
                     }}
                     className="btn-detail-movie"
                   >
                     Watch
                   </Button>
+                  :<>
+                    {movieDetail.seasons.length>1
+                    ?<Button className="btn-detail-movie" onClick={handleShowChoices}>Watch</Button>
+                    : <Button
+                    onClick={() => {
+                      navigate(`/watch/${category}/${movieDetail.id}}`);
+                    }}
+                    className="btn-detail-movie"
+                  >
+                    Watch
+                  </Button>}
+                  </>}
                 </div>
                 <div className="infor-right">
                   <div className="infor-movie">
