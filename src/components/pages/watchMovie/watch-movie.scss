@@ -1,4 +1,44 @@
-
+@use '../../../scss/' as *;
 .watch{
     padding-top: 100px;
+    &-flex{
+        @include flex(null,null);
+        margin: 0 50px;
+    }
+    .watch-left{
+        width: 80%;
+        margin-right: 50px;
+        .iframe{
+            width: 100%;
+            padding-top: 40%;
+        }
+        .episode-list{
+            display: flex;
+            width: 100%;
+            flex-wrap: wrap;
+            margin-top: 20px;
+            .episode-item{
+                color: $white;
+                padding:10px 15px;
+                background-color: $green;
+                margin-right: 10px;
+                margin-bottom: 10px;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+        }
+     &-title{
+         color: $white;
+         font-size: 2rem;
+         font-family: $font-secondary;
+         margin-top: 20px;
+     }
+    }
+    &-right{
+        width: 20%;
+        overflow-y: hidden;
+        // @include desktop{
+        //     display: none;
+        // }
+    }
 }

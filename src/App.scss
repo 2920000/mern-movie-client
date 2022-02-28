@@ -15,9 +15,9 @@ html{
     // @include tablet{
     //     font-size: 80%;
     // }
-    // @include mobile{
-    //     // font-size:75%;
-    // }
+    @include mobile{
+        font-size:90%;
+    }
 }
 body{
     font-family: $font-primary;

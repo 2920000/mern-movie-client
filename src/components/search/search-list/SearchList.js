@@ -24,7 +24,7 @@ function SearchList() {
       {moviesSearch.map((e) => {
         if (e.poster_path) {
           return (
-            <div className="poster" key={e.id}>
+            <div  className="poster" key={e.id}>
               <Poster className='grid' e={e} />
             </div>
           );

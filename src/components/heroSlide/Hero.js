@@ -7,9 +7,11 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Button from '../button/Button'
 import Spinner from '../spinner/Spinner'
+import {useNavigate} from 'react-router-dom'
 function Hero() {
     const [moviesHeroSlide,setMovieHeroSlide]=useState([])
     const [load,setLoad]=useState(false)
+    const navigate=useNavigate()
     const params={
         page:1
     }
@@ -40,7 +42,7 @@ function Hero() {
     ?<div className='hero'>
         <section className='hero-slide'>
         <Slider {...settings}>
-            {moviesHeroSlide.map(e=><MovieSlide key={e.id} e={e}/>)}
+            {moviesHeroSlide.map(e=><MovieSlide navigate={navigate} key={e.id} e={e}/>)}
         </Slider>
         </section>
       
@@ -50,7 +52,7 @@ function Hero() {
 }
 
 export default memo(Hero)
-const MovieSlide=({e})=>{
+const MovieSlide=({e,navigate})=>{
 const backgroundHero=apiConfig.originalImage(e.backdrop_path)
 
       return   <div className='hero-item' >
@@ -61,7 +63,7 @@ const backgroundHero=apiConfig.originalImage(e.backdrop_path)
                                <h4 className='hero-item-title'>{e.title}</h4>
                                <p className='hero-item-rated'>Rated {e.vote_average}</p>
                                <p className='hero-item-summary'>{e.overview}</p>
-                              <Button watch={true}   movieId={e.id} className='large hover'>Watch</Button>
+                              <Button watch={true} onClick={()=>{(navigate(`/watch/movie/${e.id}`))}}   movieId={e.id} className='large hover'>Watch</Button>
                        </div>
                   </div>
               </div>

@@ -1,0 +1,66 @@
+@use "../../../scss/" as *;
+.modal {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  z-index: 9999;
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    width: 7px;
+  }
+  &::-webkit-scrollbar-track {
+    // box-shadow: inset 0 0 5px grey; 
+    border-radius: 10px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: $grey; 
+    border-radius: 10px;
+    height: 120px;
+    // @include mobile{
+    //     display: none;
+    // }
+  }
+
+  max-height: 90vh;
+  background-color: $white;
+  border-radius: 15px;
+  @include desktop {
+    width: 300px;
+    max-height: 80vh;
+  }
+  &-title {
+    text-align: center;
+    margin: 15px 0;
+    font-family: $font-secondary;
+    font-size: 1.3rem;
+    @include desktop {
+      font-size: 1.1rem;
+    }
+  }
+  .season-item {
+    display: flex;
+    margin: 15px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid $grey;
+  }
+  .season-poster {
+    width: 170px;
+    height: 250px;
+    background-size: cover;
+    @include desktop {
+      width: 150px;
+      height: 220px;
+    }
+  }
+
+  .season-infor {
+    display: flex;
+    flex-direction: column;
+    margin-left: 15px;
+    @include desktop {
+      font-size: 0.9rem;
+    }
+  }
+}

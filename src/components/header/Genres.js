@@ -4,7 +4,7 @@
         id:28
     },
     {
-        genre:'Phưu Lưu',
+        genre:'Phiêu Lưu',
         id:12
     },
     {
@@ -20,7 +20,7 @@
         genre:'Kịch Tính',
         id:18
     },{
-        genre:'Fantasy',
+        genre:'Ảo tưởng',
         id:14
     },
 ]

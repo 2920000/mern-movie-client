@@ -23,7 +23,7 @@
     }
     .header-sidebar-link{
      &>*{
-         margin-bottom: 10px;
+         margin-bottom: 20px;
      }
     }
    
@@ -38,4 +38,11 @@
     z-index: 999;
     mix-blend-mode: multiply;
     transition: opacity 100ms linear;
+}
+.user-infor{
+    @include flex(center,null);
+    &>span{
+        margin-left: 10px;
+        font-size: 0.9rem;
+    }
 }

@@ -21,7 +21,17 @@
             margin-right: 10px;
             width: 45px;
             height: 45px;
+            @include tablet{
+              width: 35px;
+              height: 35px;
+            }
+            @include mobile{
+              width: 30px;
+              height: 30px;
+              // font-size: 1rem;
+            }
           }
+         
         }
       }
       

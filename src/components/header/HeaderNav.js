@@ -1,21 +1,55 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { MdOutlineSearch } from "react-icons/md";
 import Button from "../button/Button";
 import genres from "./Genres";
 import { nav } from "./navName";
+import LoginMoal from "./LoginModal";
+import {onAuthStateChanged,getAuth,signOut} from 'firebase/auth'
 import "./header.scss";
 function HeaderNav(props) {
+  const auth=getAuth()
+  const [loginModal,setLoginModal]=useState(false)
+  const [user,setUser]=useState({})
+  const [loadAvatar,setLoadAvatar]=useState(false)
+  const [signOutBox,setSignOutBox]=useState(false)
   const { pathname } = useLocation();
-
   const indexOfNavActive = nav.findIndex((e) => e.link === pathname);
+ const handleShowLoginModal=()=>{
+   setLoginModal(true)
+ }
+  useEffect(()=>{
+    onAuthStateChanged(auth,user=>{
+     setUser(user)
+     setLoadAvatar(true)
+     setLoginModal(false)
+     setSignOutBox(false)
+    })
+    return ()=>{
+    setSignOutBox(false)
+    }
+  },[])
+  const handleSignOutBox=()=>{
+    setSignOutBox(!signOutBox)
+  }
+  const handleSignOut=()=>{
+   signOut(auth)
+   }
   return (
     <ul className={props.className}>
       {nav.map((e, i) => (
         <NavItem key={i} index={i} indexOfNavActive={indexOfNavActive} e={e} />
       ))}
       <li>
-        <Button className="large">Đăng nhập</Button>
+        {user
+        ?<div>{loadAvatar?<div  className="logged-user">
+          <img onClick={handleSignOutBox} className="user-avatar" src={user.photoURL} alt='' />
+          {signOutBox&&<div onClick={handleSignOut} className="sign-out">
+            <span >Log out</span>
+          </div>}
+        </div>:<div className="skeleton-avatar"></div>}</div>
+        :<Button onClick={handleShowLoginModal} className="large">Đăng nhập</Button>}
+        <LoginMoal  loginModal={loginModal} setLoginModal={setLoginModal} />
       </li>
     </ul>
   );
@@ -56,7 +90,7 @@ export const NavItem = (props) => {
             props.index === props.indexOfNavActive ? "active" : ""
           }  `}
         >
-          <Link to={`${props.e.link}`}>{props.e.navName}</Link>
+          <Link onClick={props.onClick} to={`${props.e.link}`}>{props.e.navName}</Link>
         </li>
       );
     } else {

@@ -3,7 +3,7 @@ import tmdbApi, { movieType, tvType } from "../../../api/apiThemovie";
 import { Link, useParams } from "react-router-dom";
 import MovieGrid from "../../movie-grid/MovieGrid";
 import Spinner from "../../spinner/Spinner";
-import "./catalog.scss";
+import "./category.scss";
 function Catalog() {
   const [movies, setMovies] = useState([]);
   const [load, setLoad] = useState(false);
@@ -32,9 +32,9 @@ function Catalog() {
       setLoad(true);
     };
     fetchData();
-    return () => setMovies([]);
+    return () => setLoad(false)
   }, [category, pageNumber]);
-
+console.log(load)
   return (
     <div>
       {load ? (

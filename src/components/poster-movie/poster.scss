@@ -2,6 +2,9 @@
 
 .poster-link{
   position: relative;
+  .poster-title{
+    color: $white;
+  }
 }
 
 .poster-image {
@@ -29,17 +32,27 @@
  padding-top: 150%;
 }
 
-.image-container.sidebar {
+.image-container.home-sidebar{
   display: flex;
   flex-direction: column;
   padding-top: 45%;
   position: relative;
 }
-.poster-image.sidebar {
+.poster-image.home-sidebar {
   position: absolute;
   top: 0;
 }
-.sidebar {
+.image-container.watch-sidebar{
+  display: flex;
+  flex-direction: column;
+  padding-top: 45%;
+  position: relative;
+}
+.poster-image.watch-sidebar {
+  position: absolute;
+  top: 0;
+}
+.home-sidebar {
   color: $white;
 }
 .image-overlay {
@@ -49,8 +62,8 @@
   right: 0;
   bottom: 0;
   @include flex(center, center);
-  color: $red;
-  font-size: 5rem;
+  color: white;
+  font-size: 3rem;
 
   &::before {
     content: "";

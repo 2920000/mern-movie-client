@@ -1,27 +1,43 @@
-import React, { useEffect } from 'react'
-import Poster from '../poster-movie/Poster'
-import './movie-grid.scss'
+import React, { useEffect } from "react";
+import Poster from "../poster-movie/Poster";
+import "./movie-grid.scss";
 function MovieGrid(props) {
-    const {movies,type}=props
-    useEffect(()=>{
-         
-    },[])
-    console.log(movies)
+  let { movies, type } = props;
+  console.log(props)
+  let tranlateType=type
+  switch (tranlateType) {
+    case "popular":
+      tranlateType = "PHIM PHỔ BIẾN";
+      break;
+    case "upcoming":
+      tranlateType = "PHIM SẮP CHIẾU";
+      break;
+    case "top_rated":
+      tranlateType = "PHIM ĐÁNH GIÁ CAO";
+      break;
+    case "movie":
+      tranlateType = "PHIM LẺ";
+      break;
+    case "tv":
+      tranlateType = "PHIM BỘ";
+      break;
+
+    default:
+  }
   return (
-    <div className=''>
-     <div className='banner'>
-   <img  src='https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/best-movies-1614634680.jpg' alt='' />
-   </div>
-      <div className='container'>
-         <div className='movie-grid'>
-                {movies.map(movie=><div className='poster' key={movie.id}>
-                <Poster type={type} className='grid'  e={movie}/>
-            </div>)}
-         </div>
+    <div className="">
+      <div className="container">
+         <h3 className="movie-grid-title">{tranlateType}</h3>
+        <div className="movie-grid">
+          {movies.map((movie) => (
+            <div className="poster" key={movie.id}>
+              <Poster type={type} className="grid" e={movie} />
+            </div>
+          ))}
+        </div>
       </div>
-        
     </div>
-  )
+  );
 }
 
-export default MovieGrid
+export default MovieGrid;

@@ -3,7 +3,7 @@ import { Outlet ,useNavigate,useParams} from 'react-router-dom'
 import './search.scss'
 function Search() {
     const [input,setInput]=useState('')
-    const {keyword}=useParams()
+    const {keyword}=useParams('')
     const navigate=useNavigate()
    
  const handleSearch=(value)=>{
@@ -15,7 +15,7 @@ function Search() {
   return ()=>{
     setInput('')
   }
- },[])
+ },[keyword])
  
   return (
        <div className='search-page'>

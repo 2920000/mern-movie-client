@@ -9,11 +9,11 @@ import Button from "../../button/Button";
 import "./home.scss";
 function Home() {
   const navigate = useNavigate();
-  const [catalog, setCatalog] = useState("movie");
+  const [category, setCategory] = useState("movie");
   const [allowLoad, setAllowLoad] = useState();
   const btnUpRef = useRef();
   const handleSwitch = (value) => {
-    setCatalog(value);
+    setCategory(value);
   };
   const handleUpToTop = () => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
@@ -81,7 +81,7 @@ function Home() {
                 <h4
                   className="trending-catalog__movie"
                   style={
-                    catalog === "movie"
+                    category === "movie"
                       ? { borderBottom: "3px solid red" }
                       : { borderBottom: "3px solid #06121e" }
                   }
@@ -94,7 +94,7 @@ function Home() {
                 <h4
                   className="trending-catalog__tv"
                   style={
-                    catalog === "tv"
+                    category === "tv"
                       ? { borderBottom: "3px solid red" }
                       : { borderBottom: "3px solid #06121e" }
                   }
@@ -106,7 +106,7 @@ function Home() {
                 </h4>
               </div>
               <div className="trending">
-                <MovieSidebar catalog={catalog} />
+                <MovieSidebar categorySidebar={category} className='home-sidebar' />
               </div>
             </div>
           </div>
@@ -172,7 +172,7 @@ export const HomeMain = () => {
       Xem tất cả
     </Button>
   </div>
-  <MovieList  type={e.type} />
+  <MovieList className='movie-list'  type={e.type} />
 </section>)}
   </>
 };

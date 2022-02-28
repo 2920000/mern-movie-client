@@ -5,15 +5,14 @@ import {IoLogoWebComponent} from 'react-icons/io5'
 import NavSide from "../tablet-nav-sidebar/NavSide";
 import HeaderNav from "./HeaderNav";
 import "./header.scss";
-
 function Header() {
-  const headerRef = useRef();
+  const headerRef = useRef()
   const headerMixMode=useRef()
   const animation=useRef()
   const [translateSidebarHeader,setTranslateSidebarHeader]=useState('-250px')
   const [backgroundColorHeader,setBackgroundColorHeader]=useState()
   const [opacityOverlay,setOpacityOverlay]=useState(0)
-  const [overlay, setOverlay] = useState(false);
+  const [overlay, setOverlay] = useState(false)
   useEffect(() => {
     const show = () => {
      if(headerMixMode.current&&headerRef.current){

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState} from "react";
 import tmdbApi from "../../../api/apiThemovie";
 import apiConfig from "../../../api/apiConfig";
 import { useParams } from "react-router-dom";
@@ -10,21 +10,14 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 import "./movie-detail.scss";
+import SeasonSelection from "./SeasonSelection";
 function MovieDetail() {
   const { category, movieId } = useParams();
   const [load, setLoad] = useState(false);
   const [movieDetail, setMovieDetail] = useState({});
   const [movieCredits, setMovieCredits] = useState([]);
+  const [showSeason,setShowSeason]=useState(false)
   const navigate = useNavigate();
-  // tính run time
-  const x = movieDetail.runtime;
-  const y = x / 60;
-  const z = y.toString().split(".");
-  console.log(
-    z.map((e, i) => <>{i === 0 ? `${e}Hour` : `${e.slice(0, 2)}Minites`}</>)
-  );
-  console.log(movieDetail);
-  //
   useEffect(() => {
     window.scrollTo(0, 0);
     const params = {};
@@ -32,20 +25,19 @@ function MovieDetail() {
       const response = await tmdbApi.getMovieDetail(category, movieId, {
         params,
       });
-      setMovieDetail(response);
-      setLoad(true);
       const response1 = await tmdbApi.getMovieCredits(category, movieId, {
         params,
       });
       const cast = response1.cast.slice(0, 6);
+      setMovieDetail(response);
       setMovieCredits(cast);
+      setLoad(true);
     };
     fetchData();
   }, []);
-  console.log(movieDetail);
-  const caculateTime = () => {};
+  console.log('render');
   const handleShowChoices=()=>{
-console.log('oke')
+setShowSeason(true)
   }
   return (
     <>
@@ -81,7 +73,7 @@ console.log('oke')
                     ?<Button className="btn-detail-movie" onClick={handleShowChoices}>Watch</Button>
                     : <Button
                     onClick={() => {
-                      navigate(`/watch/${category}/${movieDetail.id}}`);
+                      navigate(`/watch/${category}/${movieDetail.id}}/1/1`);
                     }}
                     className="btn-detail-movie"
                   >
@@ -92,8 +84,8 @@ console.log('oke')
                 <div className="infor-right">
                   <div className="infor-movie">
                     <h3>{movieDetail.name || movieDetail.title}</h3>
-                    <h4>{movieDetail.name || movieDetail.title}</h4>
-                    <span className="time">Runtime {movieDetail.runtime}</span>
+                    <h4>{movieDetail.name || movieDetail.title}({movieDetail.release_date&&movieDetail.release_date.slice(0,4)}{movieDetail.first_air_date&&movieDetail.first_air_date.slice(0,4)})</h4>
+                    {movieDetail.runtime&&<span className="time">Runtime {movieDetail.runtime}</span>}
                     <span>
                       <span className="imdb">IMDB</span>{" "}
                       <span className="score">{movieDetail.vote_average}</span>
@@ -139,6 +131,7 @@ console.log('oke')
               </div>
             </div>
           </div>
+          {showSeason&&<SeasonSelection movieId={movieDetail.id} seasons={movieDetail.seasons} setShowSeason={setShowSeason} load={load} />}
         </div>
       ) : (
         <Spinner />
