@@ -8,7 +8,7 @@
   opacity: 1;
   transition: background-color 150ms linear;
   @include mobile {
-    padding: 2rem 0;
+    padding: 2.1rem 0;
   }
 }
 .header.fixed {
@@ -48,6 +48,9 @@
       & > * {
         margin-right: 10px;
       }
+    }
+    @include mobile{
+      margin: 0 10px;
     }
   }
 
@@ -169,6 +172,10 @@
     }
     .search-icon {
       font-size: 1.5rem;
+     @include mobile{
+      font-size: 1.7rem;
+     }
+
     }
   }
   &-bar {
@@ -181,7 +188,7 @@
       cursor: pointer;
     }
     @include mobile {
-      font-size: 1.5rem;
+      font-size: 1.7rem;
     }
   }
 }

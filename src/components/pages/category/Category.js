@@ -34,7 +34,6 @@ function Catalog() {
     fetchData();
     return () => setLoad(false)
   }, [category, pageNumber]);
-console.log(load)
   return (
     <div>
       {load ? (

@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-
+import {getFirestore} from 'firebase/firestore'
 const firebaseConfig = {
   apiKey: "AIzaSyAjR0yiYCLoPgrYHzB7tSyk-w2BRC5QyCg",
   authDomain: "movie-cbc5a.firebaseapp.com",
@@ -10,3 +10,5 @@ const firebaseConfig = {
 };
 
  export const app = initializeApp(firebaseConfig);
+ const db=getFirestore(app)
+ export {db}

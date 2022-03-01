@@ -37,11 +37,9 @@ function Header() {
   const handleShowSide = () => {
     setTranslateSidebarHeader('0')
     setOverlay(true);
-    setTimeout(() => {
       setOpacityOverlay('1')
-    }, 70);
     document.body.style.overflowY = "hidden";
-    document.body.style.marginRight = "17px";
+    // document.body.style.marginRight = "17px";
   };
 
   return (

@@ -6,7 +6,6 @@ function MovieList(props) {
   const [movieList, setMovieList] = useState([]);
   const [load, setLoad] = useState(false);
   const {className,type} =props
-  console.log(props)
   useEffect(() => {
     const params = {
       page: 1,

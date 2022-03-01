@@ -39,10 +39,24 @@
     mix-blend-mode: multiply;
     transition: opacity 100ms linear;
 }
-.user-infor{
-    @include flex(center,null);
-    &>span{
-        margin-left: 10px;
-        font-size: 0.9rem;
+.logged-user{
+    cursor: pointer;
+    .user-infor{
+        @include flex(center,null);
+        &>span{
+            margin-left: 10px;
+            font-size: 0.9rem;
+        }
+       
+    }
+    .sidebar-sign-out{
+        background-color: $white;
+        padding: 6px 0;
+        color: black;
+        margin-top: 10px;
+        text-align: center;
+        width: 100%;
+        top: -10px; 
+    transition: transform 150ms linear;
     }
 }

@@ -27,7 +27,6 @@ function MovieSidebar(props) {
           }
           fetchData()
     },[categorySidebar])
-    console.log(movies)
   return (
     <div className='movie-sidebar'>
         {movies.map((e,i)=><div className='movie-sidebar-poster' key={e.id}>

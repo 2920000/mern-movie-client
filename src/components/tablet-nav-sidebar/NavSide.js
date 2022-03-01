@@ -2,10 +2,11 @@ import React, { useEffect, useRef, useState } from "react";
 import Button from "../button/Button";
 import { nav } from "../header/navName";
 import { NavItem } from "../header/HeaderNav";
-import { onAuthStateChanged, getAuth } from "firebase/auth";
+import { onAuthStateChanged, getAuth,signOut } from "firebase/auth";
 import ReactDOM from "react-dom";
 import "./nav-sidebar.scss";
 import LoginMoal from "../header/LoginModal";
+import {HiChevronDown} from 'react-icons/hi'
 function NavSide(props) {
   const {
     translateSidebarHeader,
@@ -15,29 +16,45 @@ function NavSide(props) {
     opacityOverlay,
     setOpacityOverlay,
   } = props;
-  const refSidebarHeader = useRef();
-  const auth = getAuth();
+  const boxLogoutStyle={
+    transform:'translateY(10px)',
+    opacity:'1',
+    position:'relative',
+    zIndex:'1'
+  }
+  const initialBoxLogoutStyle={
+    transform:'translateY(-10px)',
+    opacity:'0',
+    position:'absolute',
+    zIndex:'-10'
+
+
+  }
+  const refSidebarHeader = useRef()
+  const boxLogoutRef=useRef()
+  const auth = getAuth()
   const [loginModal, setLoginModal] = useState(false);
   const [user, setUser] = useState({});
   const [loadAvatar, setLoadAvatar] = useState(false);
   const [signOutBox, setSignOutBox] = useState(false);
+  const [boxLogout,setBoxLogout]=useState(false)
   const styleSidebar = {
     transform: `translateX(${translateSidebarHeader})`,
   };
   const styleOverlay = {
     opacity: opacityOverlay,
-  };
+  }
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       setUser(user);
       setLoadAvatar(true);
       setLoginModal(false);
       setSignOutBox(false);
-    });
+    })
     return () => {
       setSignOutBox(false);
-    };
-  }, []);
+    }
+  }, [])
   const overlayRef = useRef();
   useEffect(() => {
     const mousedown = (e) => {
@@ -52,16 +69,23 @@ function NavSide(props) {
     const mousedownEvent = window.addEventListener("mousedown", mousedown);
     return () => {
       window.removeEventListener("mousedown", mousedownEvent);
-    };
-  });
+    }
+  })
   const handLeOffNav = () => {
     setOverlay(false);
     setTranslateSidebarHeader("-250px");
     setOpacityOverlay("0");
-  };
+  }
   const handleShowLoginModal = () => {
     setLoginModal(true);
-  };
+  }
+  const handleShowLogoutBox=()=>{
+    setBoxLogout(!boxLogout)
+  }
+  const handleLogout=()=>{
+     signOut(auth)
+  }
+  
   return ReactDOM.createPortal(
     <>
       {overlay && (
@@ -73,16 +97,15 @@ function NavSide(props) {
             <div>
               {loadAvatar ? (
                 <div className="logged-user">
-                  <div className="user-infor">
+                  <div onClick={handleShowLogoutBox}  className="user-infor">
                     {" "}
                     <img className="user-avatar" src={user.photoURL} alt="" />
                     <span>{user.displayName}</span>
+                    <HiChevronDown/>
                   </div>
-                  {signOutBox && (
-                    <div className="sign-out">
-                      <span>Log out</span>
+                    <div onClick={handleLogout}  ref={boxLogoutRef} style={boxLogout?boxLogoutStyle:initialBoxLogoutStyle} className="sidebar-sign-out">
+                      <span >Log out</span>
                     </div>
-                  )}
                 </div>
               ) : (
                 <div className="skeleton-avatar"></div>
