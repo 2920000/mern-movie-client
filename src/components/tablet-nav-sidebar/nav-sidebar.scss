@@ -9,10 +9,10 @@
     background-color: $background-web;
     color: $white;
     list-style-type: none;
-    padding: 15px;
+    padding: 15px 20px;
     transition: transform 200ms linear;
     @include mobile{
-        min-width: 150px;
+        min-width: 180px;
     }
     .btn-close{
         display: block;

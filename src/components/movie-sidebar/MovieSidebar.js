@@ -1,39 +1,47 @@
-import React, { useEffect, useState } from 'react'
-import tmdbApi ,{category,tvType} from '../../api/apiThemovie'
-import Poster from '../poster-movie/Poster'
-import './movie-sidebar.scss'
+import React, { useEffect, useState } from "react";
+import tmdbApi, { category, tvType } from "../../api/apiThemovie";
+import Poster from "../poster-movie/Poster";
+import "./movie-sidebar.scss";
 function MovieSidebar(props) {
-    const [movies,setMovies]=useState([])
-    const {movieId,className,type,categorySidebar}=props
-  
-    useEffect(()=>{
-        const params={
+  const { movieId, className, type, categorySidebar } = props;
+  const [movies, setMovies] = useState([]);
+
+  useEffect(() => {
+    const params = {};
+    let response = null;
+    const fetchData = async () => {
+      if (type === "similar") {
+        response = await tmdbApi.getMovieSimilar(categorySidebar, movieId, {
+          params,
+        });
+      } else {
+        switch (categorySidebar) {
+          case category.movie:
+            response = await tmdbApi.getTrendingMoives({ params });
+            break;
+          default:
+            response = await tmdbApi.getTvList(tvType.popular, { params });
         }
-        let response=null
-          const fetchData=async()=>{
-               if(type==='similar'){
-                   response= await tmdbApi.getMovieSimilar(categorySidebar,movieId,{params})
-               }else{
-                switch(categorySidebar){
-                  case category.movie:
-                     response= await tmdbApi.getTrendingMoives({params})
-                  break
-                  default:
-                    response= await tmdbApi.getTvList(tvType.popular,{params})
-                }
-               }
-                 
-              setMovies(response.results.slice(0,10))
-          }
-          fetchData()
-    },[categorySidebar])
+      }
+
+      setMovies(response.results.slice(0, 10));
+    };
+    fetchData();
+  }, [categorySidebar]);
   return (
-    <div className='movie-sidebar'>
-        {movies.map((e,i)=><div className='movie-sidebar-poster' key={e.id}>
-             <Poster  type={e.media_type||categorySidebar} e={e} className={className}  rank={i+1}/>
-        </div>)}
+    <div className="movie-sidebar">
+      {movies.map((e, i) => (
+        <div className="movie-sidebar-poster" key={e.id}>
+          <Poster
+            type={e.media_type || categorySidebar}
+            e={e}
+            className={className}
+            rank={i + 1}
+          />
+        </div>
+      ))}
     </div>
-  )
+  );
 }
 
-export default MovieSidebar
+export default MovieSidebar;

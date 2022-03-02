@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from "react";
-import "./genres.scss";
-import tmdbApi from "../../../api/apiThemovie";
 import { useParams } from "react-router-dom";
 import Poster from "../../poster-movie/Poster";
 import Spinner from "../../spinner/Spinner";
+import tmdbApi from "../../../api/apiThemovie";
+import "./genres.scss";
 function Genres() {
   const [movieByGenre, setMovieByGenre] = useState([]);
   const [load, setLoad] = useState(false);
+
   const { genreNumber } = useParams();
+
   let type = null;
+
   switch (genreNumber) {
     case '28':
       type = "HÀNH ĐỘNG"
@@ -33,9 +36,11 @@ function Genres() {
       break;
     default:
   }
+
   const params = {
     with_genres: genreNumber,
   };
+  
   useEffect(() => {
     const fetchData = async () => {
       const response = await tmdbApi.getMovieDiscover({ params });

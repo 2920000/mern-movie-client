@@ -1,43 +1,46 @@
-@use '../../scss/' as *;
-.btn{
-font-size: 0.875rem;
-color: $white;
-background-color: $red;
-border-radius: $border_radius-btn;
-cursor: pointer;
+@use "../../scss/" as *;
+.btn {
+  font-size: 0.875rem;
+  color: $white;
+  background-color: $red;
+  border-radius: $border_radius-btn;
+  cursor: pointer;
 }
- .btn.large{
-    padding:10px 30px ;
+.btn.large {
+  padding: 10px 30px;
 }
-.btn.small{
+.btn.small {
   padding: 6px 15px;
 }
-.white{
-    color: $white;
+.white {
+  color: $white;
 }
-.red{
-    color:$red ;
+.red {
+  color: $red;
 }
-.hover{
-    transition: transform 150ms linear,background-color 150ms linear;
-    font-family: $font-secondary;
-    font-weight: 700;
-   &:hover{
-    //    transform: scale(1.1);
-    //    box-shadow:  0 0 5px $white;
+.hover {
+  transition: transform 150ms linear, background-color 150ms linear;
+  font-family: $font-secondary;
+  font-weight: 700;
+  &:hover {
     background-color: $white;
     color: $red;
     transform: scale(1.1);
     font-weight: 800;
-   }
+  }
 }
-.btn-detail-movie{
-    width: 100%;
-    padding: 0.8rem 0;
-    margin-top: 2rem;
-    font-size: 1.5rem;
-    font-weight: 300;
+.btn-detail-movie {
+  width: 100%;
+  padding: 0.5rem 0;
+  margin-top: 2rem;
+  font-size: 1.5rem;
+  font-weight: 300;
+  font-family: $font-primary ;
+  @include flex(center,center);
+  @include desktop{
+    font-size: 1.2rem;
+  }
 }
-.btn.mobile{
-    padding: 10px 20px;
+.btn.mobile {
+  padding: 10px 20px;
 }

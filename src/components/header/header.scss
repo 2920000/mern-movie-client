@@ -49,7 +49,7 @@
         margin-right: 10px;
       }
     }
-    @include mobile{
+    @include mobile {
       margin: 0 10px;
     }
   }
@@ -172,10 +172,9 @@
     }
     .search-icon {
       font-size: 1.5rem;
-     @include mobile{
-      font-size: 1.7rem;
-     }
-
+      @include mobile {
+        font-size: 1.7rem;
+      }
     }
   }
   &-bar {
@@ -220,14 +219,14 @@
 .header-tablet {
   // position: fixed;
 }
-.logged-user{
+.logged-user {
   position: relative;
   .user-avatar {
     border-radius: 50%;
     width: 35px;
     display: flex;
   }
-  .sign-out{
+  .sign-out {
     position: absolute;
     min-width: 70px;
     height: 30px;
@@ -236,9 +235,8 @@
     right: 0;
     background-color: $white;
     border-radius: 3px;
-    @include flex(center,center);
+    @include flex(center, center);
   }
-  
 }
 .skeleton-avatar {
   position: relative;
@@ -246,7 +244,7 @@
   width: 35px;
   height: 35px;
   display: flex;
-  background-color:$background-web;
+  background-color: $background-web;
   animation: loadAvatar 500ms infinite linear alternate;
   &::before {
     content: "";

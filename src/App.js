@@ -2,6 +2,7 @@ import "./App.scss";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
+import React, { Suspense } from "react";
 import Home from "./components/pages/home/Home";
 import MovieDetail from "./components/pages/movie-detail/MovieDetail";
 import Category from "./components/pages/category/Category";
@@ -15,7 +16,7 @@ function App() {
     <> 
       <Router>
         <Header />
-            <Routes>
+           <Routes>
               <Route path="/" element={<Home/>} />
               <Route path="/:category/:movieId" element={<MovieDetail/>} />
               <Route  path="/:category/page/:pageNumber" element={<Category/>} />

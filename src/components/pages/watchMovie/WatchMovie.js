@@ -1,14 +1,14 @@
 import React, { useEffect, useState, memo } from "react";
 import { Link, useParams } from "react-router-dom";
 import { onAuthStateChanged, getAuth } from "firebase/auth";
-import { db } from "../../../firebaseConfig";
 import { doc, onSnapshot, setDoc, updateDoc } from "firebase/firestore";
+import { db } from "../../../firebaseConfig";
 import { v4 as uuid } from "uuid";
 import tmdbApi from "../../../api/apiThemovie";
 import Spinner from "../../spinner/Spinner";
 import MovieSidebar from "../../movie-sidebar/MovieSidebar";
-import "./watch-movie.scss";
 import LoginMoal from "../../header/LoginModal";
+import "./watch-movie.scss";
 function WatchMovie() {
   const { category, movieId, season, episode } = useParams();
   const [detail, setDetail] = useState();
@@ -17,7 +17,7 @@ function WatchMovie() {
   const [input, setInput] = useState("");
   const [load, setLoad] = useState(false);
   const [dataFromFirebase, setDataFromFirebase] = useState([]);
-  const [loginModal,setLoginModal]=useState(false)
+  const [loginModal, setLoginModal] = useState(false);
 
   const auth = getAuth();
   useEffect(() => {
@@ -52,6 +52,7 @@ function WatchMovie() {
       setDataFromFirebase([...doc.data().comments]);
     });
   }, []);
+  console.log(detail);
   const handleSubmitComment = (e) => {
     e.preventDefault();
     if (dataFromFirebase[0] === undefined) {
@@ -82,9 +83,9 @@ function WatchMovie() {
     }
     setInput("");
   };
-  const handleShowModalLogin=()=>{
-    setLoginModal(true)
-  }
+  const handleShowModalLogin = () => {
+    setLoginModal(true);
+  };
 
   return (
     <>
@@ -111,6 +112,17 @@ function WatchMovie() {
                     />
                   )}
                 </div>
+                <h3 className="watch-left-title-english">
+                  {detail.title || detail.name} 
+                </h3>
+                <h2 className="watch-left-title-vietnamese">
+                  {detail.original_title||detail.original_name}
+                  (
+                  {detail.release_date && detail.release_date.slice(0, 4)}
+                  {detailEachSeason.air_date &&
+                    detailEachSeason.air_date.slice(0, 4)}
+                  )
+                </h2>
                 <div className="episode">
                   {season && (
                     <ul className="episode-list">
@@ -132,13 +144,7 @@ function WatchMovie() {
                     </ul>
                   )}
                 </div>
-                <h3 className="watch-left-title">
-                  {detail.title || detail.name} (
-                  {detail.release_date && detail.release_date.slice(0, 4)}
-                  {detailEachSeason.air_date &&
-                    detailEachSeason.air_date.slice(0, 4)}
-                  )
-                </h3>
+
                 <div className="comments-box">
                   <p>Bình luận</p>
                   <span>{dataFromFirebase.length} comments</span>
@@ -163,13 +169,13 @@ function WatchMovie() {
                     </form>
                   ) : (
                     <div className="comment-form">
-                      {/* <span><img className="user-avatar"   alt=''/></span> */}
-                      <input
-                        onClick={handleShowModalLogin}
-                        className="input"
-                        placeholder=" Đăng nhập để  bình luận"
+                      <div onClick={handleShowModalLogin}>
+                        Đăng nhập để bình luận
+                      </div>
+                      <LoginMoal
+                        loginModal={loginModal}
+                        setLoginModal={setLoginModal}
                       />
-                      <LoginMoal loginModal={loginModal} setLoginModal={setLoginModal} />
                     </div>
                   )}
                   <div className="comments-infor">

@@ -6,7 +6,7 @@ export const  category={
 }
 export const movieType={
     latest:'latest',
-    now_playng:'nowPlaying',
+    now_playing:'now_playing',
     popular:'popular',
     top_rated:'top_rated',
     upcoming:'upcoming',
@@ -54,6 +54,10 @@ const tmdbApi={
     getMovieSimilar:(cate,id,params)=>{
          const url=category[cate] + '/' + id + '/similar'
          return instance.get(url,params)
+    },
+    getTranslations:(cate,id,params)=>{
+        const url=category[cate] + '/' +id+'/translations'
+        return  instance.get(url,params)
     }
 }
 

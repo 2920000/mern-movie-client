@@ -1,152 +1,178 @@
-@use '../../../scss/' as *;
-.watch{
-    padding-top: 100px;
-    &-flex{
-        @include flex(null,null);
-        margin: 0 50px;
-        @include desktop{
-            flex-direction: column;
-        }
-        @include tablet{
-            margin: 0 20px;
-        }
-        @include mobile{
-            margin: 0 0px;
-        }
-       
+@use "../../../scss/" as *;
+.watch {
+  padding-top: 100px;
+  &-flex {
+    @include flex(null, null);
+    margin: 0 50px;
+    @include desktop {
+      flex-direction: column;
     }
-   
-    .watch-left{
-        width: 70%;
-        margin-right: 50px;
-       @include desktop{
-           width: 100%;
-       }
-       .video{
-        width: 100%;
-        padding-top: 55%;
-        position: relative;
-        .iframe{
-           position: absolute;
-            top: 0;
-            height: 100%;
-            border: none;
+    @include tablet {
+      margin: 0 20px;
+    }
+    @include mobile {
+      margin: 0 0px;
+    }
+  }
+
+  .watch-left {
+    width: 70%;
+    margin-right: 50px;
+    @include desktop {
+      width: 100%;
+    }
+    .video {
+      width: 100%;
+      padding-top: 55%;
+      position: relative;
+      .iframe {
+        position: absolute;
+        top: 0;
+        height: 100%;
+        border: none;
+      }
+    }
+
+    .episode-list {
+      display: flex;
+      // grid-template-columns: repeat(8,1fr);
+      width: 100%;
+      flex-wrap: wrap;
+      margin-top: 20px;
+      @include mobile {
+        margin: 20px 5px 0;
+      }
+      .episode-item {
+        color: $white;
+        padding: 10px 15px;
+        background-color: $green;
+        margin-right: 10px;
+        margin-bottom: 10px;
+        border-radius: 2px;
+        cursor: pointer;
+        @include mobile {
+          padding: 9px 18px;
         }
-       }
+      }
+    }
+    &-title-english {
+      color: $white;
+      font-size: 2rem;
+      font-family: $font-secondary;
+      margin-top: 20px;
+      font-weight: 400;
+      @include mobile {
+        font-size: 1.5rem;
+        margin: 20px 5px 0;
+      }
+    }
+    &-title-vietnamese{
+      color: $grey;
+      font-size: 1.3rem;
+      font-family: $font-secondary;
+      margin-top: 10px;
+      font-weight: 400;
+      @include mobile {
+        font-size: 1rem;
+        margin: 20px 5px 0;
+      }
+    }
+    .comments-box {
+      margin-top: 30px;
+      width: 100%;
+      max-height: 500px;
+      min-height: 200px;
+      background-color: $white;
+      padding: 2px 20px;
+      border-radius: 5px;
+      overflow-y:auto ;
+      &::-webkit-scrollbar {
+        width: 8px;
+      }
       
-        .episode-list{
-            display: flex;
+      /* Track */
+      &::-webkit-scrollbar-track {
+        // border-radius: 10px;
+      }
+       
+      /* Handle */
+      &::-webkit-scrollbar-thumb {
+        background: transparent; 
+        border-radius: 10px;
+      }
+      p {
+        margin: 10px 0;
+        font-size: 1.2rem;
+        font-weight: 700;
+        font-family: $font-secondary;
+      }
+      span {
+        font-size: 0.9rem;
+      }
+      @include tablet {
+        max-height: 400px;
+      }
+      @include mobile {
+        background-color: transparent;
+        color: $white;
+        padding: 0px 5px;
+      }
+      .comment-form {
+        display: flex;
+        margin-top: 15px;
+        .user-avatar {
+          width: 40px;
+          border-radius: 20%;
+          margin-right: 15px;
+        }
+        .input {
+          width: 70%;
+          padding: 15px 0 25px 10px;
+          border: 1px solid $grey;
+          border-radius: 5px;
+          @include mobile {
             width: 100%;
-            flex-wrap: wrap;
-            margin-top: 20px;
-            @include mobile{
-                margin: 20px 5px 0;
-            }
-            .episode-item{
-                color: $white;
-                padding:10px 15px;
-                background-color: $green;
-                margin-right: 10px;
-                margin-bottom: 10px;
-                border-radius: 2px;
-                cursor: pointer;
-                @include mobile{
-                    padding: 9px 18px;
-                }
-            }
+            border-radius: 2px;
+          }
         }
-     &-title{
-         color: $white;
-         font-size: 2rem;
-         font-family: $font-secondary;
-         margin-top: 20px;
-         font-weight: 400;
-         @include mobile{
-             font-size: 1.5rem;
-             margin: 20px 5px 0;
-         }
-     }
-     .comments-box{
-         margin-top: 30px;
-         width: 100%;
-         min-height: 500px;
-         background-color: $white;
-         padding: 2px 20px;
-         border-radius: 5px;
-         p{
-             margin: 10px 0;
-             font-size: 1.2rem;
-             font-weight: 700;
-             font-family: $font-secondary;
-         }
-         span{
-             font-size: 0.9rem;
-         }
-         @include tablet{
-             max-height: 400px;
-         }
-         @include mobile{
-             background-color: transparent;
-             color: $white;
-             padding:0px 5px;
-         }
-         .comment-form{
-            display: flex;
-             margin-top: 15px;
-             .user-avatar{
-                 width: 40px;
-                 border-radius: 20%;
-                 margin-right: 15px;
-             }
-             .input{
-                 width: 70%;
-                 padding: 15px 0 25px 10px;
-                 border: 1px solid $grey;
-                 border-radius: 5px;
-                 @include mobile{
-                     width: 100%;
-                     border-radius: 2px;
-                 }
-             }
-         }
-         .comments-infor{
-             .comment-item{
-                 margin-top: 20px;
-                 display: flex;
-                 .comment-left{
-                    .comment-image{
-                        width: 40px;
-                        border-radius: 20%;
-                        margin-right: 15px;
-                    }
-                 }
-                 .comment-right{
-                     @include flex(null,center);
-                     flex-direction: column;
-                     .comment-user{
-                         font-weight: 500;
-                         font-size: 0.95rem;
-                         line-height: 1.2;
-                     }
-                     .comment-text{
-                         font-size: 0.9rem;
-                     }
-                     .reply{
-                         font-size: 0.7rem;
-                         cursor: pointer;
-                         @include flex(center,null);
-                     }
-                 }
-             }
-         }
-     }
-    }
-    &-right{
-        width: 20%;
-        overflow-y: hidden;
-        @include desktop{
-           display: none;
+      }
+      .comments-infor {
+        .comment-item {
+          margin-top: 20px;
+          display: flex;
+          .comment-left {
+            .comment-image {
+              width: 40px;
+              border-radius: 20%;
+              margin-right: 15px;
+            }
+          }
+          .comment-right {
+            @include flex(null, center);
+            flex-direction: column;
+            .comment-user {
+              font-weight: 500;
+              font-size: 0.95rem;
+              line-height: 1.2;
+            }
+            .comment-text {
+              font-size: 0.9rem;
+            }
+            .reply {
+              font-size: 0.7rem;
+              cursor: pointer;
+              @include flex(center, null);
+            }
+          }
         }
-        
+      }
     }
+  }
+  &-right {
+    width: 20%;
+    overflow-y: hidden;
+    @include desktop {
+      display: none;
+    }
+  }
 }

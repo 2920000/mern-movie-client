@@ -1,8 +1,8 @@
 import React from 'react'
-
+import './footer.scss'
 function Footer() {
   return (
-    <div>Footer</div>
+    <div className='footer'>Thiết kể bởi : Lê Xuân Thành</div>
   )
 }
 

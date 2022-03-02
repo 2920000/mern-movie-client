@@ -1,38 +1,36 @@
 @use "../../../scss/" as *;
-.catalog{
+.catalog {
+  color: $white;
+  .pagination {
     color: $white;
-    .pagination {
-        color: $white;
-        margin-top: 30px;
+    margin-top: 30px;
+    @include flex(center, center);
+    .pre-page {
+      padding: 10px;
+    }
+    .next-page {
+      padding: 10px;
+    }
+    .active {
+      background-color: $red;
+    }
+    &-number {
+      @include flex(center, center);
+      & > * {
         @include flex(center, center);
-        .pre-page {
-          padding: 10px;
+        margin-right: 10px;
+        width: 45px;
+        height: 45px;
+        @include tablet {
+          width: 35px;
+          height: 35px;
         }
-        .next-page {
-          padding: 10px;
-        }
-        .active {
-          background-color: $red;
-        }
-        &-number {
-          @include flex(center, center);
-          & > * {
-            @include flex(center, center);
-            margin-right: 10px;
-            width: 45px;
-            height: 45px;
-            @include tablet{
-              width: 35px;
-              height: 35px;
-            }
-            @include mobile{
-              width: 30px;
-              height: 30px;
-              // font-size: 1rem;
-            }
-          }
-         
+        @include mobile {
+          width: 30px;
+          height: 30px;
+          // font-size: 1rem;
         }
       }
-      
+    }
+  }
 }

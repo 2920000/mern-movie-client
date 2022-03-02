@@ -1,15 +1,34 @@
 @use "../../scss/" as *;
 
-.poster-link{
+.poster-link {
   position: relative;
-  .poster-title{
+  max-width: 100%;
+  .poster-title {
     color: $white;
+  }
+  .poster-title-english{
+    font-size: 0.875rem;
+    color: $grey;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    font-weight: 300;
+  }
+  
+  .poster-title-vietnamese{
+    margin-top: 10px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    font-size: 0.9rem;
+    color: $white;
+  
   }
 }
 
 .poster-image {
   transform: scale(1);
-  transition: transform 150ms linear,opacity 1s linear;
+  transition: transform 150ms linear, opacity 1s linear;
   width: 100%;
   height: 100%;
   position: absolute;
@@ -26,13 +45,12 @@
   overflow: hidden;
   position: relative;
   padding-top: 150%;
-  
 }
-.grid{
- padding-top: 150%;
+.grid {
+  padding-top: 150%;
 }
 
-.image-container.home-sidebar{
+.image-container.home-sidebar {
   display: flex;
   flex-direction: column;
   padding-top: 45%;
@@ -42,7 +60,7 @@
   position: absolute;
   top: 0;
 }
-.image-container.watch-sidebar{
+.image-container.watch-sidebar {
   display: flex;
   flex-direction: column;
   padding-top: 45%;
@@ -80,15 +98,11 @@
   &:hover {
     opacity: 1;
   }
-  @include mobile{
+  @include mobile {
     &:hover {
       opacity: 0;
     }
   }
-}
-p {
-  margin-top: 10px;
-  font-size: 0.875rem;
 }
 
 .rank {
@@ -99,37 +113,49 @@ p {
   top: -20px;
   border-radius: 50%;
   background-color: $red;
-  &-number{
+  &-number {
     color: $white;
     position: absolute;
     bottom: 3px;
     left: 13px;
   }
 }
-.vote{
+.vote {
   position: absolute;
   top: 10px;
   right: 10px;
   color: $white;
-  @include flex(center,center);
-  .star{
+  @include flex(center, center);
+  .star {
     color: $yellow;
     position: absolute;
     left: -15px;
     top: 2.8px;
   }
-  .score{
+  .score {
     // color:$yellow;
     font-weight: 500;
   }
 }
-.sidebar-title{
+.sidebar-title {
   position: absolute;
-  top: 60%;
-  left: 5%;
+  top: 70%;
+  left: 3%;
   font-weight: 500;
-  font-size: 1rem;
-  @include large-desktop{
+  font-size: 0.85rem;
+  font-family: $font-secondary;
+  @include large-desktop {
+    font-size: 0.9rem;
+  }
+  color: $grey;
+}
+.sidebar-title-english{
+  position: absolute;
+  top: 50%;
+  left: 3%;
+  font-weight: 600;
+  font-family: $font-secondary;
+  @include large-desktop {
     font-size: 0.9rem;
   }
 }

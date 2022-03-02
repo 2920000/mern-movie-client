@@ -7,7 +7,9 @@ import "./category.scss";
 function Catalog() {
   const [movies, setMovies] = useState([]);
   const [load, setLoad] = useState(false);
+
   const { category, pageNumber } = useParams();
+
   useEffect(() => {
     window.scrollTo(0, 0);
     const params = {
@@ -32,7 +34,9 @@ function Catalog() {
       setLoad(true);
     };
     fetchData();
-    return () => setLoad(false)
+
+    return () => setLoad(false);
+    
   }, [category, pageNumber]);
   return (
     <div>
@@ -40,13 +44,23 @@ function Catalog() {
         <div className="catalog">
           <MovieGrid type={category} movies={movies} />
           <div className="pagination">
-            <Link to={`/${category}/page/${pageNumber-1}`} className="pre-page">Trước</Link>
+            <Link
+              to={`/${category}/page/${pageNumber - 1}`}
+              className="pre-page"
+            >
+              Trước
+            </Link>
             <Pagination
               className="pagination-number"
               category={category}
               pageNumber={pageNumber}
             />
-            <Link to={`/${category}/page/${1+ +pageNumber}`} className="next-page">Sau</Link>
+            <Link
+              to={`/${category}/page/${1 + +pageNumber}`}
+              className="next-page"
+            >
+              Sau
+            </Link>
           </div>
         </div>
       ) : (

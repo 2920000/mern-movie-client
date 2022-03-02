@@ -5,29 +5,29 @@ import "./movie-list.scss";
 function MovieList(props) {
   const [movieList, setMovieList] = useState([]);
   const [load, setLoad] = useState(false);
-  const {className,type} =props
+  const { className, type } = props;
+  
   useEffect(() => {
     const params = {
       page: 1,
     };
+    console.log(type  )
     const fetchData = async () => {
       let response = null;
-        switch (type) {
-          case movieType.trending:
-            response = await tmdbApi.getTrendingMoives({ params });
-            break;
-          default:
-            response = await tmdbApi.getMovieList(type, { params });
-        }
+      switch (type) {
+        case movieType.trending:
+          response = await tmdbApi.getTrendingMoives({ params });
+          break;
+        default:
+          response = await tmdbApi.getMovieList(type, { params });
+      }
       setMovieList(response.results.slice(0, 10));
       setLoad(true);
     };
-      fetchData()
+    fetchData();
     return () => {
       setLoad(false);
-
-    }
-
+    };
   }, []);
 
   return (

@@ -4,7 +4,7 @@ import apiConfig from "./apiConfig";
 const instance=axios.create({
     baseURL:apiConfig.bareUrl,
     paramsSerializer:params=>{
-        return Qs.stringify({...params,api_key:apiConfig.API_KEY})
+        return Qs.stringify({...params,api_key:apiConfig.API_KEY,language:'vi-VN'})
     }
 })
 export default instance

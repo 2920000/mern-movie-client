@@ -1,88 +1,93 @@
-@use '../../scss/' as *;
-.hero{
-    max-width: 100%;
-    height: auto;
-    &-slide{
-       
-    }
-   .hero-item{
+@use "../../scss/" as *;
+.hero {
+  max-width: 100%;
+  height: auto;
+  &-slide {
+  }
+  .hero-item {
     position: relative;
-    &__infor{
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        z-index: 2;
-        color: $white;
-        margin-left: 2rem;
-        font-family: $font-secondary;
-        max-width: 700px;
-        width: 100%;
-        @include tablet{
-            text-align: center;
-            margin-left: 0;       
-        }
-        &>*{
-            margin-bottom: 10px;
-        }
-        @include desktop{
-            
-        }
-   
-   }
-   .placeholder{
-    max-width: 100%;
-    height:75vh ;
-    margin: 0 auto;
-    position: relative;
-    background-position: top;
-    background-size: cover;
-    transition:  height 300ms linear;
-   
-    // @include desktop{
-    //     height: 70vh;
-    // }
-    @include  mobile{
-        height: 50vh;
-    }
-}
-    &-image{
-        z-index: -1;
-        width: 100%;
-        max-height: 100vh;
-        object-fit: cover;
-    }
-    &-title{
-        font-size: 4.375rem;
-        z-index: 2;
-        letter-spacing: -1.3px;
-        @include desktop{
-            font-size: 3rem;
-        }
-        @include mobile{
-            font-size: 1.5rem;
-        }
-    }
-    &-rated{
-        font-size: 0.875rem;
-        font-weight: 600; 
-    }
-    &-summary{
-      font-size: 0.875rem;
-      line-height: 1.5;
-      @include tablet{
-          display: none;
+    &__infor {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 2;
+      color: $white;
+      margin-left: 2rem;
+      font-family: $font-secondary;
+      max-width: 700px;
+      width: 100%;
+      @include tablet {
+        text-align: center;
+        margin-left: 0;
+      }
+      & > * {
+        margin-bottom: 10px;
+      }
+      @include desktop {
       }
     }
-
-   }
-    .slick-dots li.slick-active button:before{
-        color: $red;
-        font-size: 0.6rem;
-        
+    .placeholder {
+      max-width: 100%;
+      height: 75vh;
+      margin: 0 auto;
+      position: relative;
+      background-position: top;
+      background-size: cover;
+      transition: height 300ms linear;
+      @include mobile {
+        height: 50vh;
+      }
     }
-    .slick-dots{
-        bottom: 10px;
+    &-image {
+      z-index: -1;
+      width: 100%;
+      max-height: 100vh;
+      object-fit: cover;
     }
-
-  
+    &-title {
+      font-size: 4rem;
+      z-index: 2;
+      letter-spacing: -1.7px;
+      @include desktop {
+        font-size: 3rem;
+      }
+      @include mobile {
+        font-size: 1.5rem;
+      }
+    }
+    &-rated {
+      font-size: 0.875rem;
+      font-weight: 600;
+      .imdb {
+        padding: 4px 5px;
+        border-radius: 3px;
+        background-color: $yellow;
+        font-family: $font-secondary;
+        font-weight: bolder;
+        font-size: 0.8rem;
+        color: $black;
+        margin-right: 5px;
+        @include mobile{
+          background-color: transparent;
+          color: $white;
+          margin-right: 0;
+          padding: 0;
+        }
+      }
+    }
+    &-summary {
+      font-size: 0.875rem;
+      line-height: 1.5;
+      @include tablet {
+        display: none;
+      }
+    }
+  }
+  .slick-dots li.slick-active button:before {
+    color: $red;
+    font-size: 0.6rem;
+  }
+  .slick-dots {
+    bottom: 10px;
+  }
 }

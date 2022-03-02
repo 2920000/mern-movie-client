@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { BsFillArrowUpCircleFill } from "react-icons/bs";
-import { movieType } from "../../../api/apiThemovie";
+import { movieType, tvType } from "../../../api/apiThemovie";
 import { useNavigate } from "react-router-dom";
 import Hero from "../../heroSlide/Hero";
 import MovieList from "../../movie-list/MovieList";
@@ -8,16 +8,17 @@ import MovieSidebar from "../../movie-sidebar/MovieSidebar";
 import Button from "../../button/Button";
 import "./home.scss";
 function Home() {
-  const navigate = useNavigate();
   const [category, setCategory] = useState("movie");
-  const [allowLoad, setAllowLoad] = useState();
   const btnUpRef = useRef();
+
   const handleSwitch = (value) => {
     setCategory(value);
   };
+
   const handleUpToTop = () => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   };
+  
   useEffect(() => {
     window.addEventListener("scroll", (event) => {
       if (btnUpRef.current) {
@@ -30,39 +31,6 @@ function Home() {
     });
   });
 
-  // observer
-
-  // const ready=()=>{
-  //   // const homeLeftList= document.getElementsByClassName('home-left-list')
-  //   const isload= document.getElementsByClassName('isload')
-  //   // console.log(homeLeftList)
-  //   const observer= new IntersectionObserver((entries)=>{
-  //      entries.forEach(entry=>{
-  //       //  console.log(entry)
-  //         if(entry.isIntersecting){
-  //           entry.target.setAttribute('class','movie-list loaded')
-  //         }
-
-  //      })
-  //     })
-  //       for(let i=0;i<isload.length;i++){
-  //         observer.observe(isload[i])
-  //       }
-
-  // }
-
-  // document.addEventListener('DOMContentLoaded',ready)
-  //
-//  const ready=()=>{
-//   const list=document.getElementsByClassName('home-left-list')
-//   const observer= new IntersectionObserver(entries=>{
-// console.log(entries)
-//   })
-//   for(let i=0;i<list.length;i++){
-//    observer.observe(list[i])
-//   }
-//  }
-//   window.addEventListener('DOMContentLoaded',ready)
   return (
     <main>
       <section>
@@ -71,7 +39,7 @@ function Home() {
       <section className="container-movie">
         <div className="home-flex">
           <div className="home-left">
-          <HomeMain/>
+            <HomeMain />
           </div>
 
           <div className="home-right">
@@ -106,7 +74,10 @@ function Home() {
                 </h4>
               </div>
               <div className="trending">
-                <MovieSidebar categorySidebar={category} className='home-sidebar' />
+                <MovieSidebar
+                  categorySidebar={category}
+                  className="home-sidebar"
+                />
               </div>
             </div>
           </div>
@@ -121,58 +92,43 @@ function Home() {
 
 export default Home;
 
-
-
 export const HomeMain = () => {
-  const navigate=useNavigate()
-  // const [allowLoad,setAllowLoad]=useState(null)
-  // const ready=()=>{
-  //   const list=document.getElementsByClassName('home-left-list')
-  //   const observer= new IntersectionObserver(entries=>{
-  //   entries.forEach(entry=>{
-  //     console.log(entry)
-  //         if(entry.isIntersecting){
-  //           setAllowLoad(entry.target.id)
-  //         }
-  //   })
-  
-  //   })
-  //   for(let i=0;i<list.length;i++){
-  //    observer.observe(list[i])
-  //   }
-  //  }
-  //   window.addEventListener('DOMContentLoaded',ready)
-   
+  const navigate = useNavigate();
 
   const mainCatalogList = [
     {
       catalog: "PHIM PHỔ BIẾN",
-      type:movieType.popular
+      type: movieType.popular,
     },
     {
       catalog: "PHIM SẮP CHIẾU",
-      type:movieType.upcoming
+      type: movieType.upcoming,
     },
     {
       catalog: "TOP PHIM ĐÁNH GIÁ CAO",
-      type:movieType.top_rated
+      type: movieType.top_rated,
     },
+    
   ];
 
-  return <>
-    {mainCatalogList.map((e,i)=> <section key={i} id={e.type} className="home-left-list">
-  <div className="catalog">
-    <h3>{e.catalog}</h3>
-    <Button
-      onClick={() => {
-        navigate(`${e.type}/page/1`);
-      }}
-      className="small hover"
-    >
-      Xem tất cả
-    </Button>
-  </div>
-  <MovieList className='movie-list'  type={e.type} />
-</section>)}
-  </>
+  return (
+    <>
+      {mainCatalogList.map((e, i) => (
+        <section key={i} id={e.type} className="home-left-list">
+          <div className="catalog">
+            <h3>{e.catalog}</h3>
+            <Button
+              onClick={() => {
+                navigate(`${e.type}/page/1`);
+              }}
+              className="small hover"
+            >
+              Xem tất cả
+            </Button>
+          </div>
+          <MovieList className="movie-list" type={e.type} />
+        </section>
+      ))}
+    </>
+  );
 };

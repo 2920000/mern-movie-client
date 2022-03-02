@@ -1,10 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Poster from "../poster-movie/Poster";
 import "./movie-grid.scss";
 function MovieGrid(props) {
   let { movies, type } = props;
-  console.log(props)
-  let tranlateType=type
+  let tranlateType = type;
+
   switch (tranlateType) {
     case "popular":
       tranlateType = "PHIM PHỔ BIẾN";
@@ -21,13 +21,12 @@ function MovieGrid(props) {
     case "tv":
       tranlateType = "PHIM BỘ";
       break;
-
     default:
   }
   return (
-    <div className="">
+    <div>
       <div className="container">
-         <h3 className="movie-grid-title">{tranlateType}</h3>
+        <h3 className="movie-grid-title">{tranlateType}</h3>
         <div className="movie-grid">
           {movies.map((movie) => (
             <div className="poster" key={movie.id}>

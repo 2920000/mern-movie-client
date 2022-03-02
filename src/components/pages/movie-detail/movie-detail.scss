@@ -34,10 +34,11 @@
       @include flex(null, null);
       @include tablet {
         flex-direction: column;
+        margin: 0 1rem;
       }
     }
     .infor-left {
-      width: 25%;
+      width: 28%;
       margin-right: 70px;
       display: flex;
       flex-direction: column;
@@ -50,12 +51,15 @@
         @include tablet {
           max-width: 342px;
           display: flex;
-          width: 90%;
+          width: 100%;
         }
+      }
+      .btn-detail-movie-icon{
+        font-size: 2.5rem;
       }
     }
     .infor-right {
-      width: 75%;
+      width: 72%;
       @include tablet {
         width: 100%;
       }
@@ -96,13 +100,14 @@
         }
         .genres {
           color: $white;
+          margin-top: 10px;
           & > span {
-            margin-right: 10px;
+            margin-right: 15px;
           }
         }
       }
       .more-infor-movie {
-        margin-top: 50px;
+        margin-top: 20px;
         & > * {
           margin-top: 20px;
         }
@@ -112,11 +117,14 @@
             color: $white;
             margin-left: 20px;
             font-weight: 600;
+            &>span{
+              margin-right: 10px;
+            }
           }
         }
       }
       .cast {
-        margin-top: 100px;
+        margin-top: 50px;
         color: $white;
         h3{
             margin-bottom: 20px;
@@ -128,8 +136,13 @@
           height: 120px;
           object-fit: cover;
           object-position: top;
+          @include mobile{
+            width: 90px;
+            height: 90px;
+          }
         }
         &-profile {
+         
           & > span {
             display: block;
             color: $white;
