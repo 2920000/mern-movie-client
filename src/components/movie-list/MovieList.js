@@ -10,6 +10,7 @@ function MovieList(props) {
   useEffect(() => {
     const params = {
       page: 1,
+      language:'vi-VN'
     };
     console.log(type  )
     const fetchData = async () => {

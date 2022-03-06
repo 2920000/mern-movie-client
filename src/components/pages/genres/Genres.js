@@ -39,6 +39,7 @@ function Genres() {
 
   const params = {
     with_genres: genreNumber,
+    language:'vi-VN'
   };
   
   useEffect(() => {

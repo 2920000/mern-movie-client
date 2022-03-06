@@ -1,7 +1,7 @@
 import React, { useEffect, useState, memo } from "react";
 import { Link, useParams } from "react-router-dom";
 import { onAuthStateChanged, getAuth } from "firebase/auth";
-import { doc, onSnapshot, setDoc, updateDoc } from "firebase/firestore";
+import { doc, limit, onSnapshot, query, setDoc, updateDoc } from "firebase/firestore";
 import { db } from "../../../firebaseConfig";
 import { v4 as uuid } from "uuid";
 import tmdbApi from "../../../api/apiThemovie";

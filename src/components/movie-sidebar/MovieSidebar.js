@@ -7,7 +7,9 @@ function MovieSidebar(props) {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
-    const params = {};
+    const params = {
+      language:'vi-VN'
+    };
     let response = null;
     const fetchData = async () => {
       if (type === "similar") {

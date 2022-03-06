@@ -5,12 +5,13 @@ function Trailer(props) {
   const { category, id } = props;
   const [trailer, setTrailer] = useState([]);
   const iframeRef = useRef();
-
+console.log(trailer)
   useEffect(() => {
     const params = {};
     const fetchData = async () => {
       const response = await tmdbApi.getVideos(category, id, { params });
-      setTrailer(response.results.splice(0, 2));
+      console.log(response)
+      setTrailer(response.results.splice(0, 2)); 
     };
     fetchData();
   }, []);

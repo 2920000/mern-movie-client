@@ -1,7 +1,7 @@
 @use '../../scss/' as *;
 
 .loading{
-    background-color: $black;
+    background-color: black;
     width: 100%;
     height: 100vh;
     @include flex(center,center);
@@ -11,14 +11,14 @@
         position: absolute;
         width: 80px;
         height: 80px;
-        border: 6px solid $black;
+        border: 6px solid black;
         border-top: 6px solid $white;
         border-radius: 50%;
        animation: spinner 1.5s infinite  linear ;
       @include mobile{
           width: 50px;
           height: 50px;
-          border: 4px solid $black;
+          border: 4px solid black;
         border-top: 4px solid $white;
           
       }

@@ -15,6 +15,7 @@ function Hero() {
   const navigate = useNavigate();
   const params = {
     page: 1,
+    language:'vi-VN'
   };
 
   useEffect(() => {

@@ -22,7 +22,9 @@ function MovieDetail() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    const params = {};
+    const params = {
+      language:'vi-VN'
+    };
     const fetchData = async () => {
       const response = await tmdbApi.getMovieDetail(category, movieId, {
         params,

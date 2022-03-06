@@ -10,6 +10,7 @@ function SearchList() {
   useEffect(() => {
     const params = {
       query: keyword,
+      language:'vi-VN'
     };
     
     const fetchData = async () => {

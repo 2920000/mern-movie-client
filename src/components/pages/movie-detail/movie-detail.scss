@@ -28,7 +28,9 @@
   .movie-detail__infor {
     position: relative;
     bottom: 300px;
-
+@include mobile{
+  bottom: 50px;
+}
     .infor-flex {
       margin: 0 1.5rem;
       @include flex(null, null);

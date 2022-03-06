@@ -14,6 +14,7 @@ function Catalog() {
     window.scrollTo(0, 0);
     const params = {
       page: pageNumber,
+      language:'vi-VN'
     };
     const fetchData = async () => {
       let response = null;
