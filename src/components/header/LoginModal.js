@@ -22,12 +22,6 @@ function LoginMoal({ setUser, loginModal, setLoginModal }) {
   useModal(overlayRef, setLoginModal);
   const handleSignIn = () => {};
 
-  const dataSigninForm = {
-    setUser,
-    setSwitchForm,
-    setLoginModal,
-    setCheckAccount,
-  };
   return ReactDom.createPortal(
     <>
       {loginModal && (
@@ -78,8 +72,8 @@ const FormSignIn = ({ setUser, setSwitchForm, setLoginModal, setStatus }) => {
       "profile",
       JSON.stringify({ result: res.profileObj, token: res.tokenId })
     );
-    setUser(JSON.parse(sessionStorage.getItem("profile")));
     setLoginModal(false);
+
   };
   const handleFailureGoogleSignin = () => {};
   const handleShowAndHidePassword = () => {
@@ -113,7 +107,7 @@ const FormSignIn = ({ setUser, setSwitchForm, setLoginModal, setStatus }) => {
             className="form-input"
             name="password"
             placeholder="Nhập mật khẩu"
-            rules="required|minPassword:6"
+            rules="required"
             autoComplete="on"
           />
 

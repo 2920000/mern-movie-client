@@ -88,7 +88,7 @@ function NavSide(props) {
                   <div onClick={handleShowLogoutBox} className="user-infor">
                     {" "}
                     <img className="user-avatar" src={user.result.imageUrl} alt="" />
-                    <span>{user.result.userName||user.result.signinName}</span>
+                    <span>{user.result.name||user.result.signinName}</span>
                     <HiChevronDown />
                   </div>
                   <div
@@ -106,7 +106,6 @@ function NavSide(props) {
               Đăng nhập
             </Button>
           )}
-          <LoginMoal loginModal={loginModal} setLoginModal={setLoginModal} />
           {nav.map((e, i) => (
             <NavItem
               key={i}
@@ -117,7 +116,7 @@ function NavSide(props) {
             />
           ))}
         </div>
-        <LoginMoal loginModal={loginModal} setLoginModal={setLoginModal} />
+        <LoginMoal setUser={setUser} loginModal={loginModal} setLoginModal={setLoginModal}  />
       </div>
     </>,
     document.getElementById("sidebar")

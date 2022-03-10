@@ -105,7 +105,6 @@ const validateForm2 = (formSelector,setSwitchForm,setCheckAccount,setLoginModal,
             setCheckAccount(false)
             setLoginModal(false)
             sessionStorage.setItem('profile',JSON.stringify(res.data))
-            setUser(JSON.parse(sessionStorage.getItem('profile')))
            }else{
             setSignupSuccess(true)
           }
@@ -113,7 +112,9 @@ const validateForm2 = (formSelector,setSwitchForm,setCheckAccount,setLoginModal,
          }
          )
         .catch(err=>{
-          // setCheckAccount(false)
+          if(formSelector==='signin-form'){
+            setCheckAccount(false)
+          }
           const inputId=err.response.data.inputName
           const errorMessage=err.response.data.message
           const errorElement=document.querySelector(`#${inputId}`)
