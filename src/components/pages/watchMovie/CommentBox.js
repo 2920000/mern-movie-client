@@ -10,14 +10,13 @@ function CommentBox({ movieId, episode }) {
   const [user, setUser] = useState(
     JSON.parse(sessionStorage.getItem("profile"))
   );
-  const [replyInput, setReplyInput] = useState("");
   const [comments, setComments] = useState([]);
   const [showReplyInput, setShowReplyInput] = useState(false);
 
   useEffect(() => {
     const fetchComment = async () => {
       const comments = await axios.get(
-        `http://localhost:5000/movie/${movieId}`
+        `https://movie-app-lethanh.herokuapp.com/movie/${movieId}`
       );
       setComments(comments.data.reverse());
     };
@@ -177,7 +176,7 @@ const ReplyForm = ({ commentUser, comments, setComments, user, movieId }) => {
     const createAt = moment();
     const replyComment = await axios({
       method: "post",
-      url: `http://localhost:5000/movie/${movieId}/reply`,
+      url: `https://movie-app-lethanh.herokuapp.com/movie/${movieId}/reply`,
       data: {
         commentId: commentId,
         userName: user.result.signinName || user.result.name,

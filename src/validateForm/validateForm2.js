@@ -96,7 +96,7 @@ const validateForm2 = (formSelector,setSwitchForm,setCheckAccount,setLoginModal,
          }
           axios({
              method:'post',
-             url:`http://localhost:5000/user/${formSelector.slice(0,6)}`,
+             url:`https://movie-app-lethanh.herokuapp.com/user/${formSelector.slice(0,6)}`,
              data:userSignupData
          })
          .then(res=>{

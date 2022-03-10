@@ -13,7 +13,7 @@ const CommentForm = (props) => {
       e.preventDefault();
     const comment= await  axios({
         method: "post",
-        url: `http://localhost:5000/movie/`,
+        url: `https://movie-app-lethanh.herokuapp.com/movie/`,
         data: {
           commentId: uuid(),
           movieId: movieId,
