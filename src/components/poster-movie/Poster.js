@@ -13,7 +13,6 @@ function Poster(props) {
   const [translateData, setTranslateData] = useState({});
   const { upcoming, latest, top_rated, trending, popular } = movieType;
   let category = null;
-console.log(e)
   switch (type) {
     case upcoming:
     case latest:

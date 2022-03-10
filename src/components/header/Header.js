@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef,useState } from "react";
 import { FaBars } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { IoLogoWebComponent } from "react-icons/io5";
@@ -12,7 +12,7 @@ function Header() {
   const [translateSidebarHeader, setTranslateSidebarHeader] =
     useState("-250px");
   const [backgroundColorHeader, setBackgroundColorHeader] = useState();
-  const [opacityOverlay, setOpacityOverlay] = useState(0);
+  const [opacityOverlay, setOpacityOverlay] = useState(0);  
   const [overlay, setOverlay] = useState(false);
 
   useEffect(() => {

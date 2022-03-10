@@ -9,7 +9,105 @@
   @include flex(center, center);
   flex-direction: column;
   &-modal {
-    cursor: pointer;
+    // width: 370px;
+    background-color: $white;
+    padding: 20px 30px 30px;
+    border-radius: 10px;
+    position: relative;
+    animation: scale 150ms linear;
+    // background-image: linear-gradient(#da8686, #c7caec);;
+    @keyframes scale {
+      from{
+        transform: scale(1.2);
+        opacity:0
+      }
+      to{
+        transform: scale(1);
+        opacity:1
+      }
+      
+    }
+    .btn-googleLogin {
+      @include flex(center, center);
+      column-gap: 10px;
+      border-radius: 5px;
+      padding: 8px 0;
+      margin-top: 10px;
+      width: 100%;
+      font-size: 1rem;
+      cursor: pointer;
+      background-color:#4688f1;
+      color: $white;
+      &-icon{
+         font-size: 1.4rem;
+         line-height: 0.8;
+      }
+    }
+    .login-modal-title {
+      text-align: center;
+      font-weight: 400;
+      font-size: 1.5rem;
+    }
+    .form {
+      padding: 10px 0;
+      .form-group {
+        margin-bottom: 10px;
+        position: relative;
+        .showpassword-icon {
+          position: absolute;
+          top: 37px;
+          // transform: translateY(50%);
+          right: 10px;
+          cursor: pointer;
+          font-size: 1.2rem;
+        }
+        .form-input {
+          outline: 1px solid $grey;
+          display: block;
+          padding: 10px 10px;
+          width: 320px;
+          border-radius: 5px;
+          margin-top: 5px;
+          &:focus {
+            outline: 2px solid rgb(97, 207, 165);
+          }
+        }
+        .form-input.error-color {
+          outline: 2px solid $red;
+        }
+      }
+      .btn-signin,
+      .btn-signup {
+        display: block;
+        margin-top: 20px;
+        padding: 10px 0;
+        width: 100%;
+        border-radius: 5px;
+        font-size: 1rem;
+        cursor: pointer;
+        background-color: rgb(8, 180, 100);
+        color: $white;
+      }
+      .text-signup {
+        text-align: right;
+        margin: 5px 0;
+        font-size: 0.875rem;
+        & > span {
+          cursor: pointer;
+        }
+      }
+      .isAccout {
+        text-align: right;
+        font-size: 0.875rem;
+        margin: 10px 0 0 0;
+        & > span {
+          cursor: pointer;
+        }
+      }
+      .error-message {
+        font-size: 0.8rem;
+      }
+    }
     p {
       padding: 10px;
       border-radius: 20px;
@@ -26,6 +124,60 @@
           transform: scale(1.1);
         }
       }
+    }
+    .login-loading-box {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      z-index: 9999;
+      top: 0;
+      left: 0;
+      @include flex(center, center);
+      .login-loading {
+        position: absolute;
+        border-radius: 50%;
+        border: 5px solid transparent;
+        border-top: 5px solid $red;
+        width: 60px;
+        height: 60px;
+        animation: loading 1s infinite linear;
+        @keyframes loading {
+          from {
+            transform: rotate(0deg);
+          }
+          to {
+            transform: rotate(360deg);
+          }
+        }
+      }
+    }
+    .success-box{
+      @include flex(center,center);
+      flex-direction: column;
+      position: relative;
+      font-size: 0.9rem;
+      .success-icon{
+        font-size: 3rem;
+        color: #82ce34;
+        animation: rotateIcon 300ms linear alternate ;
+        @keyframes rotateIcon {
+          0%{
+           transform: translateX(-50px);
+          }
+          100%{
+            transform: translateY(0px);
+          }
+        }
+      }
+     &>span{
+       background-color: #82ce34;
+       border-radius: 30px;
+       padding: 5px 15px;
+       color: $white;
+       margin-top: 20px;
+       cursor: pointer;
+       font-size: 1rem;
+     }
     }
   }
   &-icon {

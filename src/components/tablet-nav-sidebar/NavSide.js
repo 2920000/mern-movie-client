@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from "react";
 import { nav } from "../header/navName";
 import { NavItem } from "../header/HeaderNav";
 import { HiChevronDown } from "react-icons/hi";
-import { onAuthStateChanged, getAuth, signOut } from "firebase/auth";
 import ReactDOM from "react-dom";
 import LoginMoal from "../header/LoginModal";
 import Button from "../button/Button";
@@ -33,11 +32,8 @@ function NavSide(props) {
   
   const refSidebarHeader = useRef();
   const boxLogoutRef = useRef();
-  const auth = getAuth();
   const [loginModal, setLoginModal] = useState(false);
-  const [user, setUser] = useState({});
-  const [loadAvatar, setLoadAvatar] = useState(false);
-  const [signOutBox, setSignOutBox] = useState(false);
+  const [user, setUser] = useState(JSON.parse(sessionStorage.getItem('profile')));
   const [boxLogout, setBoxLogout] = useState(false);
   const styleSidebar = {
     transform: `translateX(${translateSidebarHeader})`,
@@ -46,15 +42,7 @@ function NavSide(props) {
     opacity: opacityOverlay,
   };
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      setUser(user);
-      setLoadAvatar(true);
-      setLoginModal(false);
-      setSignOutBox(false);
-    });
-    return () => {
-      setSignOutBox(false);
-    };
+  
   }, []);
   const overlayRef = useRef();
   useEffect(() => {
@@ -84,9 +72,9 @@ function NavSide(props) {
     setBoxLogout(!boxLogout);
   };
   const handleLogout = () => {
-    signOut(auth);
+    window.location.reload()
+    sessionStorage.removeItem('profile')
   };
-
   return ReactDOM.createPortal(
     <>
       {overlay && (
@@ -96,12 +84,11 @@ function NavSide(props) {
         <div ref={refSidebarHeader} className="header-sidebar-link">
           {user ? (
             <div>
-              {loadAvatar ? (
                 <div className="logged-user">
                   <div onClick={handleShowLogoutBox} className="user-infor">
                     {" "}
-                    <img className="user-avatar" src={user.photoURL} alt="" />
-                    <span>{user.displayName}</span>
+                    <img className="user-avatar" src={user.result.imageUrl} alt="" />
+                    <span>{user.result.userName||user.result.signinName}</span>
                     <HiChevronDown />
                   </div>
                   <div
@@ -113,9 +100,6 @@ function NavSide(props) {
                     <span>Log out</span>
                   </div>
                 </div>
-              ) : (
-                <div className="skeleton-avatar"></div>
-              )}
             </div>
           ) : (
             <Button onClick={handleShowLoginModal} className="mobile">

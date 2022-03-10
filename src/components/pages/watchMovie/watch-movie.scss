@@ -80,12 +80,10 @@
     .comments-box {
       margin-top: 30px;
       width: 100%;
-      max-height: 500px;
       min-height: 200px;
       background-color: $white;
       padding: 2px 20px;
       border-radius: 5px;
-      overflow-y:auto ;
       &::-webkit-scrollbar {
         width: 8px;
       }
@@ -109,9 +107,6 @@
       span {
         font-size: 0.9rem;
       }
-      @include tablet {
-        max-height: 400px;
-      }
       @include mobile {
         background-color: transparent;
         color: $white;
@@ -120,10 +115,18 @@
       .comment-form {
         display: flex;
         margin-top: 15px;
+        .user-customAvatar{
+          border-radius: 50%;
+          width: 40px;
+          @include flex(center,center);
+          margin-right: 15px;
+        }
         .user-avatar {
           width: 40px;
-          border-radius: 20%;
+          height: 40px;
+          border-radius: 50%;
           margin-right: 15px;
+          object-fit: cover;
         }
         .input {
           width: 70%;
@@ -143,13 +146,16 @@
           .comment-left {
             .comment-image {
               width: 40px;
-              border-radius: 20%;
+              height: 40px;
+              border-radius: 50%;
               margin-right: 15px;
+              object-fit: cover;
             }
           }
           .comment-right {
             @include flex(null, center);
             flex-direction: column;
+            width: 70%;
             .comment-user {
               font-weight: 500;
               font-size: 0.95rem;
@@ -158,12 +164,77 @@
             .comment-text {
               font-size: 0.9rem;
             }
-            .reply {
+           
+           
+            .comment-replyAndTime{
+              @include flex(center,null);
+              font-weight: 500;
+              .comment-reply{
+                font-size: 0.75rem;
+                margin-right: 10px;
+                @include flex(center,null);
+                column-gap: 3px;
+                cursor: pointer;
+              }
+              .comment-time{
+                font-size: 0.75rem;
+                @include flex(center,null);
+                column-gap: 3px;
+              }
+            }
+            .reply-comments-list{
+              width: 100%;
+              margin-top: 10px;
+              display: none;
+              .reply-input{
+                border: 1px solid $grey;
+                // border-radius: 5px ;
+                width: 100%;
+                padding: 7px 10px;
+                margin-top: 10px;
+              }
+              
+              .comment-left-reply{
+                width: 35px;
+                margin-right: 10px;
+                .comment-image-reply{
+                  border-radius: 50%;
+                  object-fit: cover;
+                  height: 35px;
+                  width: 35px;
+                }
+                .user-customAvatar-reply{
+                  border-radius: 50%;
+                }
+              }
+              .reply-comment-item{
+                display: flex;
+                margin-top: 10px;
+              }
+            }
+            .reply-comments-list.block{
+              display: block;
+
+            }
+            .reply-total{
               font-size: 0.7rem;
+              @include flex(center,null);
               cursor: pointer;
-              @include flex(center, null);
+              margin-top: 5px;
+            }
+            .reply-total.none{
+              display:none;
+            }
+            .reply-total.hidden{
+              display: none;
             }
           }
+        }
+        .user-customAvatar{
+          border-radius: 50%;
+          width: 40px;
+          @include flex(center,center);
+          margin-right: 15px;
         }
       }
     }
