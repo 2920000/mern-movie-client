@@ -21,7 +21,7 @@ function PosterMovieDetail({ movieDetail, category, setShowSeason }) {
       {category === "movie" ? (
         <Button
           onClick={() => {
-            navigate(`/watch/${category}/${movieDetail.id}}`);
+            navigate(`/watch/${category}/${movieDetail.id}`);
           }}
           className="btn-detail-movie"
         >
@@ -36,7 +36,7 @@ function PosterMovieDetail({ movieDetail, category, setShowSeason }) {
           ) : (
             <Button
               onClick={() => {
-                navigate(`/watch/${category}/${movieDetail.id}}/1/1`);
+                navigate(`/watch/${category}/${movieDetail.id}/1/1`);
               }}
               className="btn-detail-movie"
             >
