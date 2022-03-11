@@ -9,17 +9,33 @@
     }
     &-image {
       border-radius: 50%;
-      width: 120px;
+      width: 100%;
       height: 120px;
       object-fit: cover;
       object-position: top;
+      @include desktop{
+        height: 110px;
+      }
+      @include tablet{
+        height: 100px;
+      }
       @include mobile{
-        width: 90px;
         height: 90px;
       }
     }
     &-profile {
-     
+      overflow: hidden;
+      width: 120px;
+      @include desktop{
+        width: 110px;
+      }
+      @include tablet{
+        width: 100px;
+      }
+      @include mobile{
+        width: 90px;
+      }
+      overflow: hidden;
       & > span {
         display: block;
         color: $white;
@@ -34,7 +50,6 @@
         font-weight: 600;
       }
       .cast-name-character {
-        width: 100px;
         text-overflow: ellipsis;
         overflow: hidden;
         white-space: nowrap;

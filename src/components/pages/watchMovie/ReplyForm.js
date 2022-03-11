@@ -2,10 +2,9 @@ import moment from 'moment';
 import React, { useState } from 'react'
 import { postReplyComment } from '../../../api-mongoose';
 
- const ReplyForm = ({ commentUser, comments, setComments, user, movieId }) => {
+ const ReplyForm = ({ commentUser, comments, setComments, user, movieId ,focusInputRef}) => {
     const [replyInput, setReplyInput] = useState("");
-  
-    const handleReply = async (e, commentId) => {
+    const handleReply = (e, commentId) => {
       e.preventDefault();
       const createAt = moment();
       setReplyInput("");
@@ -16,12 +15,14 @@ import { postReplyComment } from '../../../api-mongoose';
         replyComment: replyInput,
         createAt,
       }
-      const replyComment = await postReplyComment(payload,movieId)
       const findComment = comments.find(
         (comment) => comment.commentId === commentId
       );
-      findComment.reply.push(replyComment.data);
+      
+      findComment.reply.push(payload);
       setComments([...comments]);
+      postReplyComment(payload,movieId)
+     
     };
   
     return (
@@ -31,8 +32,9 @@ import { postReplyComment } from '../../../api-mongoose';
           onChange={(e) => {
             setReplyInput(e.target.value);
           }}
-          autoFocus
+          ref={focusInputRef}
           className="reply-input"
+          autoFocus
         />
         <button
           onClick={(e) => {

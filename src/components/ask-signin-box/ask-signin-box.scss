@@ -1,0 +1,45 @@
+@use '../../scss/' as *;
+
+.ask-box{
+   &-overlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: $overlay;
+    z-index: 9998;
+    mix-blend-mode: multiply;
+   }
+   &-modal{
+     position: fixed;
+     top: 50%;
+     left: 50%;
+     transform: translate(-50%,-50%);
+     height: 120px;
+     width: 400px;
+     background-color: $white ;  
+     z-index: 9999;
+     border-radius: 5px;
+     box-sizing: border-box;
+     padding: 0 15px;
+     &>p{
+         font-size: 0.9rem;
+         text-align: right;
+         margin: 15px 0;
+
+         &>span{
+            display: inline-block;
+            padding: 7px 12px;
+            background-color: red;
+            margin-left: 10px;
+            color: $white;
+            border-radius: 2px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+     }
+     
+
+   }
+}

@@ -34,6 +34,7 @@ function WatchMovie() {
     movieId,
   };
   useEffect(() => {
+    window.scrollTo(0,0)
     const params = {
       language: "vi-VN",
     };

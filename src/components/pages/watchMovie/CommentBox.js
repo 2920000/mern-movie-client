@@ -28,7 +28,7 @@ function CommentBox({ movieId, episode }) {
         )}
         <div className="comments-infor">
                <Suspense fallback={<div className="comments-loading"></div>}>
-                  <AllComments user={user} movieId={movieId} episode={episode} comments={comments} setComments={setComments}  />
+                  <AllComments setUser={setUser} user={user} movieId={movieId} episode={episode} comments={comments} setComments={setComments}  />
                </Suspense>
         </div>
       </div>

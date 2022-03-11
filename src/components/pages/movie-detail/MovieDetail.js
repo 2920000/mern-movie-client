@@ -32,6 +32,7 @@ function MovieDetail() {
     load,
   };
  useEffect(()=>{
+   window.scrollTo(0,0)
  if( movieDetail.name||movieDetail.title){
   document.title=titleFucntion((movieDetail.title||movieDetail.name),'movie-detail')
  }
@@ -49,7 +50,7 @@ function MovieDetail() {
       const response1 = await tmdbApi.getMovieCredits(category, movieId, {
         params,
       });
-      const cast = response1.cast.slice(0, 6);
+      const cast = response1.cast.slice(0, 10);
       setMovieDetail(response);
       setMovieCredits(cast);
       setLoad(true);

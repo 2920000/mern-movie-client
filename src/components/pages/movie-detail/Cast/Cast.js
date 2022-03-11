@@ -1,45 +1,41 @@
 import Slider from "react-slick";
 import apiConfig from "../../../../api/apiConfig";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination, Navigation } from "swiper";
 import './cast.scss'
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+import "./styles.scss";
 export const Cast = ({ movieCredits }) => {
-    const settings = {
-      dots: true,
-      infinite: false,
-      speed: 500,
-      slidesToShow: 6,
-      slidesToScroll: 2,
-      responsive: [
-        {
-          breakpoint: 1270,
-          settings: {
-            slidesToShow: 5,
-            slidesToScroll: 2,
-            infinite: true,
-            dots: true,
-          },
-        },
-        {
-          breakpoint: 1100,
-          settings: {
-            slidesToShow: 4,
-            slidesToScroll: 2,
-            initialSlide: 2,
-          },
-        },
-        {
-          breakpoint: 480,
-          settings: {
-            slidesToShow: 3,
-            slidesToScroll: 1,
-          },
-        },
-      ],
-    };
+ 
     return (
     <div className="cast">
          <h3 className="cast-title">DIỄN VIÊN</h3>
-        <Slider {...settings}>
-        {movieCredits.map((cast) => (
+       
+         <Swiper
+        slidesPerView={3}
+        spaceBetween={10}
+        slidesPerGroup={3}
+        loopFillGroupWithBlank={true}
+        navigation={true}
+        modules={[Pagination, Navigation]}
+        breakpoints={{
+          500:{
+            slidesPerView: 4,
+          },
+          640: {
+            slidesPerView: 5,
+          },
+          
+          1200: {
+            slidesPerView: 6
+          },
+        }}
+        className="mySwiper">
+        {movieCredits.map((cast) => {
+          if(cast.profile_path){
+            return   <SwiperSlide>
           <div className="cast-profile" key={cast.id}>
             <img
               className="cast-image"
@@ -49,8 +45,12 @@ export const Cast = ({ movieCredits }) => {
             <span className="cast-name">{cast.name}</span>
             <span className="cast-name-character">{cast.character}</span>
           </div>
-        ))}
-      </Slider>
+          </SwiperSlide>
+          }
+        }
+        
+        )}
+        </Swiper>
     </div>
     );
   };

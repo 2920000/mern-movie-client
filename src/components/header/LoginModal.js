@@ -4,7 +4,7 @@ import useModal from "../../custom-hook/useModal";
 import "./login.scss";
 import FormSignIn from "../form/form-signin/FormSignIn";
 import FormSignUp from "../form/form-signup/FormSignUp";
-function LoginMoal({ setUser, loginModal, setLoginModal }) {
+function LoginModal({ setUser, loginModal, setLoginModal }) {
   const [switchForm, setSwitchForm] = useState(false);
   const [checkAccount, setCheckAccount] = useState(false);
   const overlayRef = useRef();
@@ -56,7 +56,7 @@ function LoginMoal({ setUser, loginModal, setLoginModal }) {
   );
 }
 
-export default LoginMoal;
+export default LoginModal;
 
 
 

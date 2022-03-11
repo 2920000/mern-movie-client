@@ -21,11 +21,11 @@ const CommentForm = (props) => {
         createAt,
         reply:[]
       }
-    const comment= await postComment(payload)
       setComments([
-        comment.data,
+        payload,
         ...comments,
       ]);
+     postComment(payload)
     };
     // hiển thị phần login
     const handleShowModalLogin = () => {
