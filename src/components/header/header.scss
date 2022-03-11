@@ -91,6 +91,7 @@
     bottom: 15px;
     transition: width 300ms linear;
   }
+  
   &-nav-list {
     @include flex(center, null);
     font-family: $font-primary;
@@ -119,7 +120,8 @@
       }
     }
     .active{
-      color: $red;
+    //  background-color: red;
+    //  padding: 5px 10px;
     }
     
 

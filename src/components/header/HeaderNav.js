@@ -1,34 +1,41 @@
-import React, { useState, useRef,memo, useEffect } from "react";
+import React, { useState, useRef, memo, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { MdOutlineSearch } from "react-icons/md";
 import { nav } from "./navName";
 import Button from "../button/Button";
 import genres from "./Genres";
-import LoginMoal from "./LoginModal";
+import LoginModal from "./LoginModal";
 import "./header.scss";
 function HeaderNav(props) {
   const [loginModal, setLoginModal] = useState(false);
-  const [user, setUser] = useState(JSON.parse(sessionStorage.getItem('profile')));
+  const [user, setUser] = useState(
+    JSON.parse(sessionStorage.getItem("profile"))
+  );
   const [signOutBox, setSignOutBox] = useState(false);
   const { pathname } = useLocation();
 
   const indexOfNavActive = nav.findIndex((e) => e.link === pathname);
-  
+
+  const loginModalProps = {
+    setUser,
+    loginModal,
+    setLoginModal,
+  };
+
   const handleShowLoginModal = () => {
     setLoginModal(true);
   };
 
- 
   const handleSignOutBox = () => {
     setSignOutBox(!signOutBox);
   };
 
   const handleSignOut = () => {
-    window.location.reload()
-    sessionStorage.removeItem('profile')
-    setSignOutBox(false)
+    window.location.reload();
+    sessionStorage.removeItem("profile");
+    setSignOutBox(false);
   };
-  
+
   return (
     <ul className={props.className}>
       {nav.map((e, i) => (
@@ -37,37 +44,43 @@ function HeaderNav(props) {
       <li>
         {user ? (
           <div>
-              <div className="logged-user">
-              {user.result.imageUrl
-              ?<img
+            <div className="logged-user">
+              {user.result.imageUrl ? (
+                <img
                   onClick={handleSignOutBox}
                   className="user-avatar"
                   src={user.result.imageUrl}
                   alt=""
                 />
-                :<div  onClick={handleSignOutBox}  ><img className="user-customAvatar"  src="https://p1.hiclipart.com/preview/110/885/214/green-circle-child-avatar-user-profile-smile-boy-cartoon-face-png-clipart.jpg" alt='' /></div>}
-                
-                {signOutBox && (
-                  <div onClick={handleSignOut} className="sign-out">
-                    <span>Log out</span>
-                  </div>
-                )}
-              </div>
-           
+              ) : (
+                <div onClick={handleSignOutBox}>
+                  <img
+                    className="user-customAvatar"
+                    src="https://p1.hiclipart.com/preview/110/885/214/green-circle-child-avatar-user-profile-smile-boy-cartoon-face-png-clipart.jpg"
+                    alt=""
+                  />
+                </div>
+              )}
+
+              {signOutBox && (
+                <div onClick={handleSignOut} className="sign-out">
+                  <span>Log out</span>
+                </div>
+              )}
+            </div>
           </div>
         ) : (
           <Button onClick={handleShowLoginModal} className="large">
             Đăng nhập
           </Button>
         )}
-        <LoginMoal setUser={setUser} loginModal={loginModal} setLoginModal={setLoginModal}  />
+        <LoginModal {...loginModalProps} />
       </li>
     </ul>
   );
 }
 
 export default HeaderNav;
-
 
 // export const NavItem=(props)=>{
 //    return (
@@ -110,7 +123,7 @@ export const NavItem = (props) => {
   };
 
   if (props.type === "sidebar") {
-    if (props.e.className !== "search"&&props.e.className!=='genre') {
+    if (props.e.className !== "search" && props.e.className !== "genre") {
       return (
         <li
           className={`${
@@ -159,8 +172,7 @@ export const NavItem = (props) => {
           )}
         </span>
       );
-    } 
-    else if (props.e.className === "search") {
+    } else if (props.e.className === "search") {
       return (
         <li
           className={`${

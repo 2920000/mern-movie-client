@@ -13,8 +13,30 @@ function WatchMovie() {
   const [detailEachSeason, setDetailEachSeason] = useState({});
   const [load, setLoad] = useState(false);
 
+  const videoIframeProps = {
+    category,
+    movieId,
+    season,
+    episode,
+  };
+  const movieTitleAndEpisode = {
+    detail,
+    detailEachSeason,
+    season,
+    movieId,
+    episode,
+  };
+
+  const movieSidebarProps = {
+    className: "watch-sidebar",
+    type: "similar",
+    categorySidebar: category,
+    movieId,
+  };
   useEffect(() => {
-    const params = {};
+    const params = {
+      language: "vi-VN",
+    };
 
     const fetchData = async () => {
       const response = await tmdbApi.getMovieDetail(category, movieId, {
@@ -44,29 +66,12 @@ function WatchMovie() {
           <div className="container-movie">
             <div className="watch-flex">
               <div className="watch-left">
-                <VideoIframe
-                  category={category}
-                  movieId={movieId}
-                  season={season}
-                  episode={episode}
-                />
-                <MovieTitleAndEpisode
-                  detail={detail}
-                  detailEachSeason={detailEachSeason}
-                  season={season}
-                  movieId={movieId}
-                  episode={episode}
-                />
+                <VideoIframe {...videoIframeProps} />
+                <MovieTitleAndEpisode {...movieTitleAndEpisode} />
                 <CommentBox movieId={movieId} episode={episode} />
               </div>
               <div className="watch-right">
-                <h3></h3>
-                <MovieSidebar
-                  className="watch-sidebar"
-                  type="similar"
-                  categorySidebar={category}
-                  movieId={movieId}
-                />
+                <MovieSidebar {...movieSidebarProps} />
               </div>
             </div>
           </div>
@@ -79,4 +84,3 @@ function WatchMovie() {
 }
 
 export default memo(WatchMovie);
-

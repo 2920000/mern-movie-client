@@ -1,7 +1,7 @@
 import {useState} from 'react'
-import moment from 'moment';
-import axios from 'axios';
+import { postComment } from '../../../api-mongoose';
 import {v4 as uuid} from 'uuid'
+import moment from 'moment';
 import LoginModal from '../../header/LoginModal';
 const CommentForm = (props) => {
     const { type, user, movieId, setComments, comments } = props;
@@ -9,27 +9,23 @@ const CommentForm = (props) => {
     const [loginModal, setLoginModal] = useState(false);
   
     const handleSubmitComment = async (e) => {
+      setInput("");
       const createAt = moment();
       e.preventDefault();
-    const comment= await  axios({
-        method: "post",
-        url: `https://movie-app-lethanh.herokuapp.com/movie/`,
-        data: {
-          commentId: uuid(),
-          movieId: movieId,
-          userName: user.result.signinName || user.result.name,
-          avatar: user.result.imageUrl || null,
-          message: input,
-          createAt,
-          reply:[]
-        },
-      });
-  
+      const payload={
+        commentId: uuid(),
+        movieId: movieId,
+        userName: user.result.signinName || user.result.name,
+        avatar: user.result.imageUrl || null,
+        message: input,
+        createAt,
+        reply:[]
+      }
+    const comment= await postComment(payload)
       setComments([
         comment.data,
         ...comments,
       ]);
-      setInput("");
     };
     // hiển thị phần login
     const handleShowModalLogin = () => {

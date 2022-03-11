@@ -1,5 +1,4 @@
-import axios from "axios";
-
+import { checkAccount } from "../api-mongoose";
 const customError = (inputElement, textCustomError) => {
   inputElement.nextSibling.innerHTML = textCustomError;
   inputElement.style.outline = "2px solid red";
@@ -94,11 +93,7 @@ const validateForm2 = (formSelector,setSwitchForm,setCheckAccount,setLoginModal,
          if(setCheckAccount){
           setCheckAccount(true)
          }
-          axios({
-             method:'post',
-             url:`https://movie-app-lethanh.herokuapp.com/user/${formSelector.slice(0,6)}`,
-             data:userSignupData
-         })
+         checkAccount(userSignupData,formSelector.slice(0,6))
          .then(res=>{
            if(formSelector==='signin-form'){
             window.location.reload()

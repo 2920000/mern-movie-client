@@ -1,16 +1,13 @@
 import React, { memo, useEffect, useState } from "react";
-import { AiOutlinePlayCircle } from "react-icons/ai";
 import { TiStarFullOutline } from "react-icons/ti";
 import { FaPlayCircle } from "react-icons/fa";
-import tmdbApi, { movieType } from "../../api/apiThemovie";
+import  { movieType } from "../../api/apiThemovie";
 import { Link } from "react-router-dom";
 import apiConfig from "../../api/apiConfig";
 import "./poster.scss";
-import axios from "axios";
 function Poster(props) {
   let { type, e, className, rank } = props;
   const [opacity, setOpaicty] = useState(0.2);
-  const [translateData, setTranslateData] = useState({});
   const { upcoming, latest, top_rated, trending, popular } = movieType;
   let category = null;
   switch (type) {

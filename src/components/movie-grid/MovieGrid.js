@@ -1,10 +1,12 @@
 import React from "react";
+import titleFucntion from "../../title/titleFucntion";
+import Pagination from "../pagination/Pagination";
 import Poster from "../poster-movie/Poster";
 import "./movie-grid.scss";
 function MovieGrid(props) {
-  let { movies, type } = props;
+  let { movies, type,pageNumber } = props;
   let tranlateType = type;
-
+  
   switch (tranlateType) {
     case "popular":
       tranlateType = "PHIM PHỔ BIẾN";
@@ -23,6 +25,12 @@ function MovieGrid(props) {
       break;
     default:
   }
+  const paginationProps={
+    pageNumber,
+    type
+  }
+  document.title=titleFucntion(tranlateType)
+  document.body.style.overflowY='auto'
   return (
     <div>
       <div className="container">
@@ -34,6 +42,8 @@ function MovieGrid(props) {
             </div>
           ))}
         </div>
+
+         <Pagination {...paginationProps} />
       </div>
     </div>
   );

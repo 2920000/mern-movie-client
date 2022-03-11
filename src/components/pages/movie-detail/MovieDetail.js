@@ -1,29 +1,46 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
-import {BsFillPlayFill} from 'react-icons/bs'
 import tmdbApi from "../../../api/apiThemovie";
 import SeasonSelection from "./SeasonSelection";
 import apiConfig from "../../../api/apiConfig";
 import Spinner from "../../spinner/Spinner";
-import Button from "../../button/Button";
 import Trailer from "../../trailer/Trailer";
-import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./movie-detail.scss";
+import { Cast } from "./Cast/Cast";
+import MovieInfor from "./movie-infor/MovieInfor";
+import PosterMovieDetail from "./poster-movie-detail/PosterMovieDetail";
+import titleFucntion from "../../../title/titleFucntion";
 function MovieDetail() {
-  const navigate = useNavigate();
   const { category, movieId } = useParams();
   const [load, setLoad] = useState(false);
   const [movieDetail, setMovieDetail] = useState({});
   const [movieCredits, setMovieCredits] = useState([]);
   const [showSeason, setShowSeason] = useState(false);
 
+  const posterMovieDetailProps = {
+    movieDetail,
+    category,
+    setShowSeason,
+  };
+
+  const seasonSelectionProps = {
+    movieId: movieDetail.id,
+    seasons: movieDetail.seasons,
+    setShowSeason,
+    load,
+  };
+ useEffect(()=>{
+ if( movieDetail.name||movieDetail.title){
+  document.title=titleFucntion((movieDetail.title||movieDetail.name),'movie-detail')
+ }
+ })
   useEffect(() => {
+    
     window.scrollTo(0, 0);
     const params = {
-      language:'vi-VN'
+      language: "vi-VN",
     };
     const fetchData = async () => {
       const response = await tmdbApi.getMovieDetail(category, movieId, {
@@ -39,116 +56,21 @@ function MovieDetail() {
     };
     fetchData();
   }, []);
-  
-  const handleShowChoices = () => {
-    setShowSeason(true);
-  };
+ 
   return (
     <>
       {load ? (
         <div className="movie-detail">
-          <div className="movie-detail__hero">
-            <img
-              className="movie-detail__hero__backdrop"
-              src={apiConfig.originalImage(movieDetail.backdrop_path)}
-              alt=""
-            />
-          </div>
+          <HeroMovieDetail movieDetail={movieDetail} />
           <div className="movie-detail__infor">
             <div className="container-movie">
               <section className="infor-flex">
                 <div className="infor-left">
-                  <img
-                    className="infor-left-image"
-                    src={apiConfig.w500Image(movieDetail.poster_path)}
-                    alt=""
-                  />
-                  {category === "movie" ? (
-                    <Button
-                      onClick={() => {
-                        navigate(`/watch/${category}/${movieDetail.id}}`);
-                      }}
-                      className="btn-detail-movie"
-                    >
-                      <BsFillPlayFill className="btn-detail-movie-icon"/> XEM PHIM
-                    </Button>
-                  ) : (
-                    <>
-                      {movieDetail.seasons.length > 1 ? (
-                        <Button
-                          className="btn-detail-movie"
-                          onClick={handleShowChoices}
-                        >
-                           <BsFillPlayFill className="btn-detail-movie-icon"/> XEM PHIM
-                        </Button>
-                      ) : (
-                        <Button
-                          onClick={() => {
-                            navigate(
-                              `/watch/${category}/${movieDetail.id}}/1/1`
-                            );
-                          }}
-                          className="btn-detail-movie"
-                        >
-                           <BsFillPlayFill className="btn-detail-movie-icon"/> XEM PHIM
-                        </Button>
-                      )}
-                    </>
-                  )}
+                  <PosterMovieDetail {...posterMovieDetailProps} />
                 </div>
                 <div className="infor-right">
-                  <div className="infor-movie">
-                    <h3>{movieDetail.original_title || movieDetail.original_name}</h3>
-                    <h4>
-                      {movieDetail.name || movieDetail.title}(
-                      {movieDetail.release_date &&
-                        movieDetail.release_date.slice(0, 4)}
-                      {movieDetail.first_air_date &&
-                        movieDetail.first_air_date.slice(0, 4)}
-                      )
-                    </h4>
-                    {movieDetail.runtime && (
-                      <span className="time">
-                        {movieDetail.runtime} phút
-                      </span>
-                    )}
-                    <span>
-                      <span className="imdb">IMDB</span>{" "}
-                      <span className="score">{movieDetail.vote_average}</span>
-                    </span>
-                    <p className="genres">
-                      {movieDetail.genres ? (
-                        <>
-                          {movieDetail.genres.map((genre) => (
-                            <span key={genre.id}>{genre.name}</span>
-                          ))}
-                        </>
-                      ) : (
-                        ""
-                      )}
-                    </p>
-                  </div>
-                  <div className="more-infor-movie">
-                    <p>
-                      QUỐC GIA {" "}
-                      <span className="country">
-                        {movieDetail.production_countries.map((country, i) => (
-                          <span key={i}>{country.name}</span>
-                        ))}
-                      </span>{" "}
-                    </p>
-                    <p>
-                      KHỞI CHIẾU {" "}
-                      <span className="premiere">
-                        {movieDetail.first_air_date || movieDetail.release_date}
-                      </span>
-                    </p>
-                    <p className="overview">{movieDetail.overview}</p>
-                  </div>
-                  <div className="cast">
-                    <h3 className="cast-title">DIỄN VIÊN</h3>
-                    <Cast movieCredits={movieCredits} />
-                  </div>
+                  <MovieInfor movieDetail={movieDetail} />
+                  <Cast movieCredits={movieCredits} />
                 </div>
               </section>
               <div className="trailer">
@@ -156,14 +78,7 @@ function MovieDetail() {
               </div>
             </div>
           </div>
-          {showSeason && (
-            <SeasonSelection
-              movieId={movieDetail.id}
-              seasons={movieDetail.seasons}
-              setShowSeason={setShowSeason}
-              load={load}
-            />
-          )}
+          {showSeason && <SeasonSelection {...seasonSelectionProps} />}
         </div>
       ) : (
         <Spinner />
@@ -174,53 +89,14 @@ function MovieDetail() {
 
 export default MovieDetail;
 
-export const Cast = ({ movieCredits }) => {
-  const settings = {
-    dots: true,
-    infinite: false,
-    speed: 500,
-    slidesToShow: 6,
-    slidesToScroll: 2,
-    responsive: [
-      {
-        breakpoint: 1270,
-        settings: {
-          slidesToShow: 5,
-          slidesToScroll: 2,
-          infinite: true,
-          dots: true,
-        },
-      },
-      {
-        breakpoint: 1100,
-        settings: {
-          slidesToShow: 4,
-          slidesToScroll: 2,
-          initialSlide: 2,
-        },
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 1,
-        },
-      },
-    ],
-  };
+const HeroMovieDetail = ({ movieDetail }) => {
   return (
-    <Slider {...settings}>
-      {movieCredits.map((cast) => (
-        <div className="cast-profile" key={cast.id}>
-          <img
-            className="cast-image"
-            src={apiConfig.w500Image(cast.profile_path)}
-            alt=""
-          />
-          <span className="cast-name">{cast.name}</span>
-          <span className="cast-name-character">{cast.character}</span>
-        </div>
-      ))}
-    </Slider>
+    <div className="movie-detail__hero">
+      <img
+        className="movie-detail__hero__backdrop"
+        src={apiConfig.originalImage(movieDetail.backdrop_path)}
+        alt=""
+      />
+    </div>
   );
 };

@@ -10,9 +10,9 @@ function SearchList() {
   useEffect(() => {
     const params = {
       query: keyword,
-      language:'vi-VN'
+      language: "vi-VN",
     };
-    
+
     const fetchData = async () => {
       if (keyword !== undefined) {
         const response = await tmdbApi.search({ params });

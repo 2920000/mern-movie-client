@@ -15,6 +15,15 @@ function Header() {
   const [opacityOverlay, setOpacityOverlay] = useState(0);  
   const [overlay, setOverlay] = useState(false);
 
+  const navSideProps={
+    translateSidebarHeader,
+    setTranslateSidebarHeader,
+    overlay,
+    opacityOverlay,
+    setOpacityOverlay,
+    setOverlay,
+  }
+
   useEffect(() => {
     const show = () => {
       if (headerMixMode.current && headerRef.current) {
@@ -43,16 +52,11 @@ function Header() {
     document.body.style.overflowY = "hidden";
     // document.body.style.marginRight = "17px";
   };
-
+   
   return (
     <header>
       <NavSide
-        translateSidebarHeader={translateSidebarHeader}
-        setTranslateSidebarHeader={setTranslateSidebarHeader}
-        overlay={overlay}
-        opacityOverlay={opacityOverlay}
-        setOpacityOverlay={setOpacityOverlay}
-        setOverlay={setOverlay}
+       {...navSideProps}
       />
       <div
         ref={headerMixMode}

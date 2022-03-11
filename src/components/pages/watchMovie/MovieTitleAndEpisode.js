@@ -1,7 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import titleFucntion from '../../../title/titleFucntion'
 
 function MovieTitleAndEpisode({detail,detailEachSeason,season,movieId,episode}) {
+  document.title=titleFucntion(detail.title||detail.name,'movie-watch')
+  console.log(detail)
   return (
     <>
           <h3 className="watch-left-title-english">

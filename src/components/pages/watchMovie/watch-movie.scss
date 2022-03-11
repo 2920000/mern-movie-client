@@ -28,6 +28,7 @@
       .iframe {
         position: absolute;
         top: 0;
+        width: 100%;
         height: 100%;
         border: none;
       }
@@ -63,7 +64,7 @@
       font-weight: 400;
       @include mobile {
         font-size: 1.5rem;
-        margin: 20px 5px 0;
+        margin: 20px 10px 0;
       }
     }
     &-title-vietnamese{
@@ -74,7 +75,7 @@
       font-weight: 400;
       @include mobile {
         font-size: 1rem;
-        margin: 20px 5px 0;
+        margin: 20px 10px 0;
       }
     }
     .comments-box {
@@ -110,7 +111,7 @@
       @include mobile {
         background-color: transparent;
         color: $white;
-        padding: 0px 5px;
+        padding: 0px 10px;
       }
       .comment-form {
         display: flex;
@@ -235,6 +236,25 @@
           width: 40px;
           @include flex(center,center);
           margin-right: 15px;
+        }
+        .comments-loading{
+           width: 50px;
+           height: 50px;
+           border-radius: 50%;
+           border: 5px solid transparent;
+           border-top: 5px solid $red;
+           margin: auto;
+           margin: 50px auto;
+           animation: loading 700ms infinite linear;
+           @keyframes loading {
+             from{
+              transform: rotate(0deg);
+             }
+             to{
+               transform: rotate(360deg);
+             }
+             
+           }
         }
       }
     }

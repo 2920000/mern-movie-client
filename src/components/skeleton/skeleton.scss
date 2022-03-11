@@ -29,3 +29,40 @@
     left: 100%;
   }
 }
+.loading-hero {
+  width: 100%;
+  height: 75vh;
+  @include mobile{
+    height: 50vh;
+  }
+  // background-color: red;
+}
+
+.skeleton-list {
+  padding-top: 100px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  .skeleton-item {
+    padding-top: 150%;
+    margin: 10px;
+    background-color: #132538;
+    animation:  opacityLoad infinite 1s linear  alternate;
+  }
+  @include large-desktop {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  @include desktop {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  @include tablet {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @keyframes opacityLoad {
+    from {
+      opacity: 0.3;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+}

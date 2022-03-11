@@ -21,6 +21,13 @@
       case `an hour`:
         timetranslate = `1 giờ trước `;
         break;
+        case `a day`:
+          timetranslate = `1 ngày trước `;
+          break;
+      case `${timeNumber} day`:
+      case `${timeNumber} days`:
+        timetranslate=`${timeNumber} ngày trước`  
+          break
       default:
         timetranslate = time;
     }

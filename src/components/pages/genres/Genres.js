@@ -4,6 +4,7 @@ import Poster from "../../poster-movie/Poster";
 import Spinner from "../../spinner/Spinner";
 import tmdbApi from "../../../api/apiThemovie";
 import "./genres.scss";
+import titleFucntion from "../../../title/titleFucntion";
 function Genres() {
   const [movieByGenre, setMovieByGenre] = useState([]);
   const [load, setLoad] = useState(false);
@@ -43,6 +44,7 @@ function Genres() {
   };
   
   useEffect(() => {
+    document.title=titleFucntion(type)
     const fetchData = async () => {
       const response = await tmdbApi.getMovieDiscover({ params });
       setMovieByGenre(response.results);
