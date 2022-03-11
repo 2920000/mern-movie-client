@@ -9,7 +9,7 @@ function VideoIframe({category,movieId,season,episode}) {
                       className="iframe"
                       width="100%"
                       height="100%"
-                      src={`https://www.2embed.ru/embed/tmdb/movie?id=$1{movieId}`}
+                      src={`https://www.2embed.ru/embed/tmdb/movie?id=${movieId}`}
                       title="video"
                       allow='fullscreen'
                     />
