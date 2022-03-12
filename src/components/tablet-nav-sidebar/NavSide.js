@@ -13,7 +13,6 @@ function NavSide(props) {
     overlay,
     setOverlay,
     opacityOverlay,
-    setOpacityOverlay,
   } = props;
 
   const boxLogoutStyle = {
@@ -52,18 +51,17 @@ function NavSide(props) {
         document.body.style.marginRight = "0";
         setOverlay(false);
         setTranslateSidebarHeader("-250px");
-        setOpacityOverlay("0");
       }
     };
     const mousedownEvent = window.addEventListener("mousedown", mousedown);
     return () => {
       window.removeEventListener("mousedown", mousedownEvent);
-    };
+      };
   });
   const handLeOffNav = () => {
     setOverlay(false);
     setTranslateSidebarHeader("-250px");
-    setOpacityOverlay("0");
+    window.document.body.style.overflowY='auto'
   };
   const handleShowLoginModal = () => {
     setLoginModal(true);

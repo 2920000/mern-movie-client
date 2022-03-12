@@ -35,8 +35,8 @@ export const Cast = ({ movieCredits }) => {
         className="mySwiper">
         {movieCredits.map((cast) => {
           if(cast.profile_path){
-            return   <SwiperSlide>
-          <div className="cast-profile" key={cast.id}>
+            return   <SwiperSlide key={cast.id}>
+          <div className="cast-profile" >
             <img
               className="cast-image"
               src={apiConfig.w500Image(cast.profile_path)}

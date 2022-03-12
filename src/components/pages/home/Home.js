@@ -9,6 +9,7 @@ function Home() {
   const handleUpToTop = () => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   };
+  console.log('run')
   
   useEffect(() => {
     document.title='Phim Hay'

@@ -17,7 +17,7 @@ function AllComments({
   setComments,
 }) {
 
-  const [showReplyInput, setShowReplyInput] = useState(false);
+  const [showReplyInput, setShowReplyInput] = useState('');
   const [askSignInBox, setAskSignInBox] = useState(false);
   const [loginModal, setLoginModal] = useState(false);
 
@@ -106,7 +106,7 @@ function AllComments({
                 {timeTranslate(moment(commentUser.createAt).toNow(true))}
               </span>
             </div>
-            {commentUser.reply.length >= 1 && (
+            {(commentUser.reply.length >= 1&&showReplyInput!==commentUser.commentId)&& (
               <span
                 onClick={() => {
                   handleShowReply(index, commentUser.commentId);

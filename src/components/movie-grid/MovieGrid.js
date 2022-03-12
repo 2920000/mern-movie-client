@@ -30,7 +30,6 @@ function MovieGrid(props) {
     type
   }
   document.title=titleFucntion(tranlateType)
-  document.body.style.overflowY='auto'
   return (
     <div>
       <div className="container">
